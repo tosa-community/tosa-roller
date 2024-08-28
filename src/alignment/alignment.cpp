@@ -7,3 +7,5 @@ Alignment::Alignment(std::string name, int limit, std::vector<std::string> alias
 
 Alignment::~Alignment()
 {}
+
+ListEntry::Type Alignment::type() { return ListEntry::Type::ALIGNMENT; }

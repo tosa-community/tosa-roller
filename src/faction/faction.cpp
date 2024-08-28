@@ -7,3 +7,5 @@ Faction::Faction(std::string name, int limit, std::vector<std::string> aliases, 
 
 Faction::~Faction()
 {}
+
+ListEntry::Type Faction::type() { return ListEntry::Type::FACTION; }

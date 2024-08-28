@@ -17,3 +17,5 @@ std::string Role::get_colored_str()
 
   return stream.str();
 }
+
+ListEntry::Type Role::type() { return ListEntry::Type::ROLE; }

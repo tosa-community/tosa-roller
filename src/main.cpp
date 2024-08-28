@@ -9,6 +9,7 @@
 #include "role/role.hpp"
 #include "alignment/alignment.hpp"
 #include "faction/faction.hpp"
+#include "role-list/role-list.hpp"
 
 int main(int argc, char **argv)
 {
@@ -26,7 +27,7 @@ int main(int argc, char **argv)
 
     std::cout << "Enter role list (Leave empty to continue):" << std::endl;
 
-    std::vector<std::string> rolelist;
+    std::vector<std::string> list_query;
 
     while (true)
     {
@@ -35,7 +36,7 @@ int main(int argc, char **argv)
 
       if (line.length() == 0) break;
 
-      rolelist.push_back(line);
+      list_query.push_back(line);
     }
 
     std::vector<ListEntry *> entries;
@@ -63,6 +64,9 @@ int main(int argc, char **argv)
       Faction *faction_entry = new Faction(faction["name"], faction["limit"], faction["aliases"], faction_roles);
       entries.push_back(faction_entry);
     }
+
+    RoleList list(list_query, entries);
+    std::cout << list.generate() << std::endl;
   }
   catch (Error& e)
   {

@@ -12,6 +12,8 @@ public:
 
   Alignment(std::string name, int limit, std::vector<std::string> aliases, std::vector<ListEntry *> roles);
   ~Alignment();
+
+  ListEntry::Type type();
 };
 
 #endif

@@ -12,6 +12,8 @@ public:
 
   Faction(std::string name, int limit, std::vector<std::string> aliases, std::vector<ListEntry *> alignments);
   ~Faction();
+
+  ListEntry::Type type();
 };
 
 #endif

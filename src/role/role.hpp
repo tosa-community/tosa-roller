@@ -16,6 +16,8 @@ public:
   ~Role();
 
   std::string get_colored_str();
+
+  ListEntry::Type type();
 };
 
 #endif
