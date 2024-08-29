@@ -20,6 +20,9 @@ int main(int argc, char **argv)
     std::string data_source;
     app.add_option("-d,--data", data_source, "Path to data source.")->type_name("FILENAME")->required();
 
+    bool verbose;
+    app.add_flag("-V,--verbose", verbose, "Show extra information.");
+
     CLI11_PARSE(app, argc, argv);
 
     std::ifstream data_stream(data_source);
@@ -72,7 +75,7 @@ int main(int argc, char **argv)
     }
 
     RoleList list(list_query, entries);
-    std::cout << list.generate() << std::endl;
+    std::cout << list.generate(verbose) << std::endl;
   }
   catch (Error& e)
   {

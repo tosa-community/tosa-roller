@@ -32,7 +32,7 @@ class RoleList
 public:
   RoleList(std::vector<std::string> input, std::vector<ListEntry *> data);
 
-  std::string generate();
+  std::string generate(bool verbose=false);
 };
 
 #endif

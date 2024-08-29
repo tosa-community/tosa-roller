@@ -16,13 +16,13 @@ RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data
   }
 }
 
-std::string RoleList::generate()
+std::string RoleList::generate(bool verbose)
 {
   std::srand(std::time(nullptr));
 
   counts.resize(this->data.size(), 0);
 
-  std::vector<Role *> out;
+  std::vector<std::pair<ListEntry *, Role *>> out;
 
   for (auto input_entry : this->query)
   {
@@ -50,26 +50,26 @@ std::string RoleList::generate()
         switch (data[i]->type())
         {
         case ListEntry::Type::ROLE:
-          out.push_back(static_cast<Role *>(data[i]));
+          out.push_back(std::pair<ListEntry *, Role *>(data[i], static_cast<Role *>(data[i])));
           break;
         case ListEntry::Type::ALIGNMENT:
         {
           Role *role = generate_role_from_alignment(i);
-          out.push_back(role);
+          out.push_back(std::pair<ListEntry *, Role *>(data[i], role));
 
           break;
         }
         case ListEntry::Type::FACTION:
         {
           Role *role = generate_role_from_faction(i);
-          out.push_back(role);
+          out.push_back(std::pair<ListEntry *, Role *>(data[i], role));
 
           break;
         }
         case ListEntry::Type::GROUP:
         {
           Role *role = generate_role_from_group(i);
-          out.push_back(role);
+          out.push_back(std::pair<ListEntry *, Role *>(data[i], role));
         }
         }
 
@@ -86,9 +86,17 @@ std::string RoleList::generate()
 
   std::shuffle(out.begin(), out.end(), std::default_random_engine(std::time(nullptr)));
 
-  for (auto role : out)
+  for (auto it : out)
   {
-    res.append(role->get_colored_str());
+    res.append(it.second->get_colored_str());
+
+    if (verbose)
+    {
+      res.append(" (");
+      res.append(it.first->name);
+      res.append(")");
+    }
+
     res.append("\n");
   }
 
