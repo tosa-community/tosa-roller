@@ -10,8 +10,10 @@ Role::Role(std::string name, int limit, std::vector<std::string> aliases, std::v
 Role::~Role()
 {}
 
-std::string Role::get_colored_str()
+std::string Role::get_colored_str(bool color)
 {
+  if (!color) return name;
+
   std::stringstream stream;
   stream << "\033[1;38;2;" << this->r << ";" << this->g << ";" << this->b << "m" << name << "\033[0;m";
 

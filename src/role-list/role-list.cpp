@@ -6,7 +6,7 @@ RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data
   for (auto entry : input) this->query.push_back(process_role_entry(entry));
 }
 
-std::string RoleList::generate(bool verbose)
+std::string RoleList::generate(bool verbose, bool color)
 {
   std::srand(std::time(nullptr));
 
@@ -81,7 +81,7 @@ std::string RoleList::generate(bool verbose)
 
   for (auto it : out)
   {
-    res.append(it.second->get_colored_str());
+    res.append(it.second->get_colored_str(color));
 
     if (verbose)
     {

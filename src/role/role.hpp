@@ -15,7 +15,7 @@ public:
   Role(std::string name, int limit, std::vector<std::string> aliases, std::vector<int> color);
   ~Role();
 
-  std::string get_colored_str();
+  std::string get_colored_str(bool color=true);
 
   ListEntry::Type type();
 };

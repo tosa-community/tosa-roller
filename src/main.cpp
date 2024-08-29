@@ -27,6 +27,12 @@ int main(int argc, char **argv)
     std::string file;
     app.add_option("-f,--from-file", file, "Generate list from file")->type_name("FILENAME");
 
+    bool no_color = false;
+    app.add_option("--no-color", no_color, "Output without color");
+
+    std::string output_file;
+    app.add_option("-o,--to-file", output_file, "Output to file")->type_name("FILENAME");
+
     bool verbose = false;
     app.add_flag("-V,--verbose", verbose, "Show extra information");
 
@@ -160,7 +166,19 @@ int main(int argc, char **argv)
     }
 
     RoleList list(list_query, entries);
-    std::cout << list.generate(verbose) << std::endl;
+    if (output_file.size() == 0)
+    {
+      std::cout << list.generate(verbose, !no_color);
+    }
+    else
+    {
+      std::ofstream ostream(output_file, std::ios::out);
+      if (ostream.is_open())
+      {
+        ostream << list.generate(verbose, false);
+        ostream.close();
+      }
+    }
   }
   catch (Error& e)
   {
