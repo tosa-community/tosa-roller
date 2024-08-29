@@ -20,7 +20,7 @@ int main(int argc, char **argv)
     std::string data_source;
     app.add_option("-d,--data", data_source, "Path to data source.")->type_name("FILENAME")->required();
 
-    bool verbose;
+    bool verbose = false;
     app.add_flag("-V,--verbose", verbose, "Show extra information.");
 
     CLI11_PARSE(app, argc, argv);
