@@ -33,6 +33,9 @@ int main(int argc, char **argv)
     std::string output_file;
     app.add_option("-o,--to-file", output_file, "Output to file")->type_name("FILENAME");
 
+    bool no_scroll = false;
+    app.add_flag("-r,--skip-scrolls", no_scroll, "Skip scroll selection");
+
     bool verbose = false;
     app.add_flag("-V,--verbose", verbose, "Show extra information");
 
@@ -78,6 +81,22 @@ int main(int argc, char **argv)
         if (line.length() == 0) break;
 
         list_query.push_back(line);
+      }
+    }
+
+    std::vector<std::string> scrolls;
+
+    if (!no_scroll)
+    {
+      std::cout << "Enter scrolls (Prefix with '-' to enter cursed scroll):" << std::endl;
+
+      for (int i = 1; i < list_query.size() + 1; i++)
+      {
+        std::string buf;
+        std::cout << i << ": ";
+        std::getline(std::cin, buf);
+
+        scrolls.push_back(buf);
       }
     }
 
@@ -166,17 +185,19 @@ int main(int argc, char **argv)
     }
 
     RoleList list(list_query, entries);
-    auto output = list.generate();
+    list.generate();
+    if (no_scroll) list.shuffle();
+    else list.shuffle(scrolls);
     if (output_file.size() == 0)
     {
-      std::cout << RoleList::to_string(output, verbose, !no_color);
+      std::cout << list.to_string(verbose, !no_color);
     }
     else
     {
       std::ofstream ostream(output_file, std::ios::out);
       if (ostream.is_open())
       {
-        ostream << RoleList::to_string(output, verbose, false);
+        ostream << list.to_string(verbose, false);
         ostream.close();
       }
     }

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <map>
 #include <random>
 #include <cstdlib>
 #include <cctype>
@@ -24,19 +25,25 @@ class RoleList
   std::vector<ListEntry *> data;
   std::vector<int> counts;
 
+  std::vector<std::pair<ListEntry *, Role *>> output;
+
   unsigned int line = 0;
 
   Role *generate_role_from_role(int i);
   Role *generate_role_from_alignment(int i);
   Role *generate_role_from_faction(int i);
   Role *generate_role_from_group(int i);
+
+  void _shuffle(std::vector<std::string> scrolls);
 public:
   RoleList(std::vector<std::string> input, std::vector<ListEntry *> data);
 
-  std::vector<std::pair<ListEntry *, Role *>> generate();
+  void generate();
+  void shuffle();
+  void shuffle(std::vector<std::string> scrolls);
+  std::string to_string(bool verbose=false, bool color=true);
 
   static std::string process_role_entry(std::string input);
-  static std::string to_string(std::vector<std::pair<ListEntry *, Role *>> input, bool verbose=false, bool color=true);
 };
 
 #endif
