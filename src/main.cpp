@@ -65,6 +65,12 @@ int main(int argc, char **argv)
       entries.push_back(faction_entry);
     }
 
+    for (auto group : data["groups"])
+    {
+      Group *group_entry = new Group(group["name"], -1, group["aliases"], entries, group["factions"], group["alignments"], group["roles"]);
+      entries.push_back(group_entry);
+    }
+
     RoleList list(list_query, entries);
     std::cout << list.generate() << std::endl;
   }

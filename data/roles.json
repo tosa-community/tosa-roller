@@ -323,5 +323,21 @@
         }
       ]
     }
+  ],
+  "groups": [
+    {
+      "name": "Any",
+      "aliases": ["any", "*"],
+      "factions": ["Town", "Coven", "Corporate", "Spirits", "Elementals", "Neutrals"],
+      "alignments": [],
+      "roles": []
+    },
+    {
+      "name": "Common Town",
+      "aliases": ["common town", "commontown", "ct"],
+      "factions": [],
+      "alignments": ["Town Killing", "Town Support", "Town Investigative", "Town Protective"],
+      "roles": []
+    }
   ]
 }

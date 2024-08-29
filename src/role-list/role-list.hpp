@@ -16,6 +16,7 @@
 #include "role/role.hpp"
 #include "alignment/alignment.hpp"
 #include "faction/faction.hpp"
+#include "group/group.hpp"
 
 class RoleList
 {
@@ -27,6 +28,7 @@ class RoleList
 
   Role *generate_role_from_alignment(int i);
   Role *generate_role_from_faction(int i);
+  Role *generate_role_from_group(int i);
 public:
   RoleList(std::vector<std::string> input, std::vector<ListEntry *> data);
 

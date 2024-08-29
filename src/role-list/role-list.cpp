@@ -66,6 +66,11 @@ std::string RoleList::generate()
 
           break;
         }
+        case ListEntry::Type::GROUP:
+        {
+          Role *role = generate_role_from_group(i);
+          out.push_back(role);
+        }
         }
 
         counts[i]++;
@@ -140,5 +145,24 @@ Role *RoleList::generate_role_from_faction(int i)
 
       return role;
     }
+  }
+}
+
+Role *RoleList::generate_role_from_group(int i)
+{
+  Group *group = static_cast<Group *>(data[i]);
+  while (true)
+  {
+    int rand = std::rand() % group->roles.size();
+
+    if (counts[group->roles[rand].faction_index] == data[group->roles[rand].faction_index]->limit) continue;
+    if (counts[group->roles[rand].alignment_index] == data[group->roles[rand].alignment_index]->limit) continue;
+    if (counts[group->roles[rand].role_index] == data[group->roles[rand].role_index]->limit) continue;
+
+    counts[group->roles[rand].faction_index]++;
+    counts[group->roles[rand].alignment_index]++;
+    counts[group->roles[rand].role_index]++;
+
+    return group->roles[rand].role;
   }
 }

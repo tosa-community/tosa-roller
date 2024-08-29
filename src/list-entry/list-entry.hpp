@@ -12,6 +12,7 @@ public:
     ROLE,
     ALIGNMENT,
     FACTION,
+    GROUP,
   };
   std::string name;
   int limit;
