@@ -34,7 +34,18 @@ std::string RoleList::generate()
       std::vector<std::string> aliases = data[i]->aliases;
       if (std::find(aliases.begin(), aliases.end(), input_entry) != aliases.end())
       {
-        if (counts[i] == data[i]->limit) throw Error("Too many of role: %s (at line %d)", data[i]->name, line);
+        if (counts[i] == data[i]->limit)
+        {
+          switch (data[i]->type())
+          {
+          case ListEntry::Type::ROLE:
+            throw Error("Too many of role: %s (at line %d)", data[i]->name.c_str(), line);
+          case ListEntry::Type::ALIGNMENT:
+            throw Error("Too many of alignment: %s (at line %d)", data[i]->name.c_str(), line);
+          case ListEntry::Type::FACTION:
+            throw Error("Too many of faction: %s (at line %d)", data[i]->name.c_str(), line);
+          }
+        }
 
         switch (data[i]->type())
         {
