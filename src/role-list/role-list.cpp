@@ -119,7 +119,7 @@ Role *RoleList::generate_role_from_faction(int i)
   int temp = 0;
   for (auto entry : faction->alignments)
   {
-    Alignment *alignment = static_cast<Alignment *>(entry);
+    Alignment *alignment = entry;
     temp += alignment->roles.size() + 1;
 
     alignments.push_back(std::pair<int, Alignment *>(temp, alignment));
