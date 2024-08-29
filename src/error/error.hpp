@@ -4,12 +4,11 @@
 #include <cstdarg>
 #include <cstdlib>
 #include <cstring>
+#include <cstdio>
 
 class Error
 {
-  const char *msg;
-
-  static const char *msg_sprintf(const char *format, std::va_list args);
+  char msg[1024];
 public:
   Error(const char *format, ...);
   ~Error();
