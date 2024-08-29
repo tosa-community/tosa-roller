@@ -33,9 +33,10 @@ class RoleList
 public:
   RoleList(std::vector<std::string> input, std::vector<ListEntry *> data);
 
-  std::string generate(bool verbose=false, bool color=true);
+  std::vector<std::pair<ListEntry *, Role *>> generate();
 
   static std::string process_role_entry(std::string input);
+  static std::string to_string(std::vector<std::pair<ListEntry *, Role *>> input, bool verbose=false, bool color=true);
 };
 
 #endif

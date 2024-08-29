@@ -6,7 +6,7 @@ RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data
   for (auto entry : input) this->query.push_back(process_role_entry(entry));
 }
 
-std::string RoleList::generate(bool verbose, bool color)
+std::vector<std::pair<ListEntry *, Role *>> RoleList::generate()
 {
   std::srand(std::time(nullptr));
 
@@ -75,29 +75,7 @@ std::string RoleList::generate(bool verbose, bool color)
     if (!role_is_valid) throw Error("Invalid role name: %s (at line %d)", input_entry.c_str(), line);
   }
 
-  std::string res;
-
-  std::shuffle(out.begin(), out.end(), std::default_random_engine(std::time(nullptr)));
-
-  for (auto it : out)
-  {
-    res.append(it.second->get_colored_str(color));
-
-    if (verbose)
-    {
-      res.append(" (");
-      if (it.first->type() == ListEntry::Type::FACTION)
-      {
-        res.append("Random ");
-      }
-      res.append(it.first->name);
-      res.append(")");
-    }
-
-    res.append("\n");
-  }
-
-  return res;
+  return out;
 }
 
 Role *RoleList::generate_role_from_role(int i)
@@ -211,4 +189,29 @@ std::string RoleList::process_role_entry(std::string input)
   output.erase(std::remove(output.begin(), output.end(), '\r'), output.end());
 
   return output;
+}
+
+std::string RoleList::to_string(std::vector<std::pair<ListEntry *, Role *>> input, bool verbose, bool color)
+{
+  std::string res;
+
+  for (auto it : input)
+  {
+    res.append(it.second->get_colored_str(color));
+
+    if (verbose)
+    {
+      res.append(" (");
+      if (it.first->type() == ListEntry::Type::FACTION)
+      {
+        res.append("Random ");
+      }
+      res.append(it.first->name);
+      res.append(")");
+    }
+
+    res.append("\n");
+  }
+
+  return res;
 }

@@ -166,16 +166,17 @@ int main(int argc, char **argv)
     }
 
     RoleList list(list_query, entries);
+    auto output = list.generate();
     if (output_file.size() == 0)
     {
-      std::cout << list.generate(verbose, !no_color);
+      std::cout << RoleList::to_string(output, verbose, !no_color);
     }
     else
     {
       std::ofstream ostream(output_file, std::ios::out);
       if (ostream.is_open())
       {
-        ostream << list.generate(verbose, false);
+        ostream << RoleList::to_string(output, verbose, false);
         ostream.close();
       }
     }
