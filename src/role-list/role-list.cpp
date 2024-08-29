@@ -50,8 +50,12 @@ std::string RoleList::generate(bool verbose)
         switch (data[i]->type())
         {
         case ListEntry::Type::ROLE:
+        {
+          Role *role = generate_role_from_role(i);
           out.push_back(std::pair<ListEntry *, Role *>(data[i], static_cast<Role *>(data[i])));
+
           break;
+        }
         case ListEntry::Type::ALIGNMENT:
         {
           Role *role = generate_role_from_alignment(i);
@@ -93,6 +97,10 @@ std::string RoleList::generate(bool verbose)
     if (verbose)
     {
       res.append(" (");
+      if (it.first->type() == ListEntry::Type::FACTION)
+      {
+        res.append("Random ");
+      }
       res.append(it.first->name);
       res.append(")");
     }
@@ -103,8 +111,34 @@ std::string RoleList::generate(bool verbose)
   return res;
 }
 
+Role *RoleList::generate_role_from_role(int i)
+{
+  int faction_index = i;
+  while (data[faction_index]->type() != ListEntry::Type::FACTION) faction_index++;
+
+  if (counts[faction_index] == data[faction_index]->limit) throw Error("Too many of faction: %s (at line %d)", data[faction_index]->name.c_str(), line);
+
+  counts[faction_index]++;
+
+  int alignment_index = i;
+  while (data[alignment_index]->type() != ListEntry::Type::ALIGNMENT) alignment_index++;
+
+  if (counts[alignment_index] == data[alignment_index]->limit) throw Error("Too many of alignment: %s (at line %d)", data[alignment_index]->name.c_str(), line);
+
+  counts[alignment_index]++;
+
+  return static_cast<Role *>(data[i]);
+}
+
 Role *RoleList::generate_role_from_alignment(int i)
 {
+  int faction_index = i;
+  while (data[faction_index]->type() != ListEntry::Type::FACTION) faction_index++;
+
+  if (counts[faction_index] == data[faction_index]->limit) throw Error("Too many of faction: %s (at line %d)", data[faction_index]->name.c_str(), line);
+
+  counts[faction_index]++;
+
   Alignment *alignment = static_cast<Alignment *>(data[i]);
   int len = alignment->roles.size();
 

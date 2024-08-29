@@ -26,6 +26,7 @@ class RoleList
 
   unsigned int line = 0;
 
+  Role *generate_role_from_role(int i);
   Role *generate_role_from_alignment(int i);
   Role *generate_role_from_faction(int i);
   Role *generate_role_from_group(int i);

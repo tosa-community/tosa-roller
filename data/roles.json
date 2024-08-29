@@ -1,7 +1,7 @@
 {
   "factions": [
     {
-      "name": "Random Town",
+      "name": "Town",
       "limit": -1,
       "aliases": ["random town", "randomtown", "rt"],
       "alignments": [
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "name": "Random Coven",
+      "name": "Coven",
       "limit": 4,
       "aliases": ["random coven", "randomcoven", "rcov", "rc"],
       "alignments": [
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "name": "Random Corporate",
+      "name": "Corporate",
       "limit": 4,
       "aliases": ["random corporate", "randomcorporate", "rcor"],
       "alignments": [
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "name": "Random Spirits",
+      "name": "Spirits",
       "limit": 4,
       "aliases": ["random spirits", "randomspirits", "rs", "random spirit", "randomspirit"],
       "alignments": [
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "name": "Random Elementals",
+      "name": "Elementals",
       "limit": 4,
       "aliases": ["random elementals", "randomelementals", "re", "random elemental", "randomelemental"],
       "alignments": [
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "name": "Random Neutrals",
+      "name": "Neutrals",
       "limit": -1,
       "aliases": ["random neutral", "randomneutral", "rn"],
       "alignments": [
@@ -328,7 +328,7 @@
     {
       "name": "Any",
       "aliases": ["any", "*"],
-      "factions": ["Random Town", "Random Coven", "Random Corporate", "Random Spirits", "Random Elementals", "Random Neutrals"],
+      "factions": ["Town", "Coven", "Corporate", "Spirits", "Elementals", "Neutrals"],
       "alignments": [],
       "roles": []
     },
