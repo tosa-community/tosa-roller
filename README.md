@@ -18,7 +18,7 @@ cmake --build .
 
 ### using Autotools
 
-```
+```bash
 # If build files don't already exist
 aclocal
 autoconf
