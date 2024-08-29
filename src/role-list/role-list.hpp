@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <random>
 #include <cstdlib>
 #include <cctype>
 #include <ctime>

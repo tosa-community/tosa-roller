@@ -79,6 +79,8 @@ std::string RoleList::generate()
 
   std::string res;
 
+  std::shuffle(out.begin(), out.end(), std::default_random_engine(std::time(nullptr)));
+
   for (auto role : out)
   {
     res.append(role->get_colored_str());
