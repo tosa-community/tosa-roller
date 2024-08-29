@@ -141,11 +141,15 @@ int main(int argc, char **argv)
         }
 
         Alignment *alignment_entry = new Alignment(alignment["name"], alignment["limit"], alignment["aliases"], alignment_roles);
+        if (alignment_entry->roles.size() == 0) continue;
+
         entries.push_back(alignment_entry);
         faction_roles.push_back(alignment_entry);
       }
 
       Faction *faction_entry = new Faction(faction["name"], faction["limit"], faction["aliases"], faction_roles);
+      if (faction_entry->alignments.size() == 0) continue;
+
       entries.push_back(faction_entry);
     }
 
