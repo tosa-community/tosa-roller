@@ -328,7 +328,7 @@
     {
       "name": "Any",
       "aliases": ["any", "*"],
-      "factions": ["Town", "Coven", "Corporate", "Spirits", "Elementals", "Neutrals"],
+      "factions": ["Random Town", "Random Coven", "Random Corporate", "Random Spirits", "Random Elementals", "Random Neutrals"],
       "alignments": [],
       "roles": []
     },
