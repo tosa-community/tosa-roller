@@ -3,19 +3,7 @@
 RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data)
 {
   this->data = data;
-  for (auto entry : input)
-  {
-    std::string processed_string;
-
-    for (auto c : entry)
-    {
-      processed_string.push_back(std::tolower(c));
-    }
-
-    processed_string.erase(std::remove(processed_string.begin(), processed_string.end(), '\r'), processed_string.end());
-
-    this->query.push_back(processed_string);
-  }
+  for (auto entry : input) this->query.push_back(process_role_entry(entry));
 }
 
 std::string RoleList::generate(bool verbose)
@@ -209,4 +197,18 @@ Role *RoleList::generate_role_from_group(int i)
 
     return group->roles[rand].role;
   }
+}
+
+std::string RoleList::process_role_entry(std::string input)
+{
+  std::string output;
+
+  for (auto c : input)
+  {
+    output.push_back(std::tolower(c));
+  }
+
+  output.erase(std::remove(output.begin(), output.end(), '\r'), output.end());
+
+  return output;
 }

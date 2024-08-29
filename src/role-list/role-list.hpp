@@ -34,6 +34,8 @@ public:
   RoleList(std::vector<std::string> input, std::vector<ListEntry *> data);
 
   std::string generate(bool verbose=false);
+
+  static std::string process_role_entry(std::string input);
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
 #include "error/error.hpp"
@@ -17,6 +18,9 @@ int main(int argc, char **argv)
   {
     CLI::App app("A role-list generator for Town of Salem: Anticipation");
 
+    std::string bans_str;
+    app.add_option("-b,--bans", bans_str, "Comma-separated roles to prevent from being rolled");
+
     std::string data_source;
     app.add_option("-d,--data", data_source, "Path to data source")->type_name("FILENAME")->required();
 
@@ -27,6 +31,15 @@ int main(int argc, char **argv)
     app.add_flag("-V,--verbose", verbose, "Show extra information");
 
     CLI11_PARSE(app, argc, argv);
+
+    std::vector<std::string> bans;
+    if (bans_str.size() != 0)
+    {
+      std::stringstream bans_stream(bans_str);
+      std::string entry;
+
+      while (std::getline(bans_stream, entry, ',')) bans.push_back(RoleList::process_role_entry(entry));
+    }
 
     std::ifstream data_stream(data_source);
     nlohmann::json data = nlohmann::json::parse(data_stream);
@@ -68,12 +81,60 @@ int main(int argc, char **argv)
     {
       std::vector<ListEntry *> faction_roles;
 
+      bool is_banned = false;
+
+      for (int i = 0; i < faction["aliases"].size(); i++)
+      {
+        for (int j = 0; j < bans.size(); j++)
+        {
+          if (faction["aliases"][i] == bans[j])
+          {
+            is_banned = true;
+            break;
+          }
+        }
+      }
+
+      if (is_banned) continue;
+
       for (auto alignment : faction["alignments"])
       {
         std::vector<ListEntry *> alignment_roles;
 
+        bool is_banned = false;
+
+        for (int i = 0; i < alignment["aliases"].size(); i++)
+        {
+          for (int j = 0; j < bans.size(); j++)
+          {
+            if (alignment["aliases"][i] == bans[j])
+            {
+              is_banned = true;
+              break;
+            }
+          }
+        }
+
+        if (is_banned) continue;
+
         for (auto role : alignment["roles"])
         {
+          bool is_banned = false;
+
+          for (int i = 0; i < role["aliases"].size(); i++)
+          {
+            for (int j = 0; j < bans.size(); j++)
+            {
+              if (role["aliases"][i] == bans[j])
+              {
+                is_banned = true;
+                break;
+              }
+            }
+          }
+
+          if (is_banned) continue;
+
           Role *entry = new Role(role["name"], role["limit"], role["aliases"], role["color"]);
           entries.push_back(entry);
           alignment_roles.push_back(entry);
