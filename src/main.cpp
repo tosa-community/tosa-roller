@@ -15,31 +15,51 @@ int main(int argc, char **argv)
 {
   try
   {
-    CLI::App app("A role-list generator for Town of Salem: Anticipation.");
+    CLI::App app("A role-list generator for Town of Salem: Anticipation");
 
     std::string data_source;
-    app.add_option("-d,--data", data_source, "Path to data source.")->type_name("FILENAME")->required();
+    app.add_option("-d,--data", data_source, "Path to data source")->type_name("FILENAME")->required();
+
+    std::string file;
+    app.add_option("-f,--from-file", file, "Generate list from file")->type_name("FILENAME");
 
     bool verbose = false;
-    app.add_flag("-V,--verbose", verbose, "Show extra information.");
+    app.add_flag("-V,--verbose", verbose, "Show extra information");
 
     CLI11_PARSE(app, argc, argv);
 
     std::ifstream data_stream(data_source);
     nlohmann::json data = nlohmann::json::parse(data_stream);
 
-    std::cout << "Enter role list (Leave empty to continue):" << std::endl;
-
     std::vector<std::string> list_query;
 
-    while (true)
+    if (file.size() == 0)
     {
-      std::string line;
-      std::getline(std::cin, line);
 
-      if (line.length() == 0) break;
+      std::cout << "Enter role list (Leave empty to continue):" << std::endl;
 
-      list_query.push_back(line);
+      while (true)
+      {
+        std::string line;
+        std::getline(std::cin, line);
+
+        if (line.length() == 0) break;
+
+        list_query.push_back(line);
+      }
+    }
+    else
+    {
+      std::ifstream stream(file);
+      while (true)
+      {
+        std::string line;
+        std::getline(stream, line);
+
+        if (line.length() == 0) break;
+
+        list_query.push_back(line);
+      }
     }
 
     std::vector<ListEntry *> entries;

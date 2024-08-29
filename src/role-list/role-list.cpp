@@ -12,6 +12,8 @@ RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data
       processed_string.push_back(std::tolower(c));
     }
 
+    processed_string.erase(std::remove(processed_string.begin(), processed_string.end(), '\r'), processed_string.end());
+
     this->query.push_back(processed_string);
   }
 }
@@ -77,7 +79,6 @@ std::string RoleList::generate(bool verbose)
         }
         }
 
-        counts[i]++;
         role_is_valid = true;
         break;
       }
@@ -126,6 +127,7 @@ Role *RoleList::generate_role_from_role(int i)
   if (counts[alignment_index] == data[alignment_index]->limit) throw Error("Too many of alignment: %s (at line %d)", data[alignment_index]->name.c_str(), line);
 
   counts[alignment_index]++;
+  counts[i]++;
 
   return static_cast<Role *>(data[i]);
 }
