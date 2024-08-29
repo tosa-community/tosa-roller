@@ -2,8 +2,6 @@
 
 RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data)
 {
-  std::srand(std::time(nullptr));
-
   this->data = data;
   for (auto entry : input)
   {
@@ -20,9 +18,11 @@ RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data
 
 std::string RoleList::generate()
 {
+  std::srand(std::time(nullptr));
+
   counts.resize(this->data.size(), 0);
 
-  std::string res;
+  std::vector<Role *> out;
 
   for (auto input_entry : this->query)
   {
@@ -39,20 +39,23 @@ std::string RoleList::generate()
         switch (data[i]->type())
         {
         case ListEntry::Type::ROLE:
-          res.append(static_cast<Role *>(data[i])->get_colored_str());
+          out.push_back(static_cast<Role *>(data[i]));
           break;
         case ListEntry::Type::ALIGNMENT:
         {
           Role *role = generate_role_from_alignment(i);
+          out.push_back(role);
 
-          res.append(role->get_colored_str());
           break;
         }
         case ListEntry::Type::FACTION:
+        {
+          Role *role = generate_role_from_faction(i);
+          out.push_back(role);
+
           break;
         }
-
-        res.append("\n");
+        }
 
         counts[i]++;
         role_is_valid = true;
@@ -61,6 +64,14 @@ std::string RoleList::generate()
     }
 
     if (!role_is_valid) throw Error("Invalid role name: %s (at line %d)", input_entry.c_str(), line);
+  }
+
+  std::string res;
+
+  for (auto role : out)
+  {
+    res.append(role->get_colored_str());
+    res.append("\n");
   }
 
   return res;
@@ -79,7 +90,42 @@ Role *RoleList::generate_role_from_alignment(int i)
 
     if (counts[index] != data[index]->limit)
     {
+      counts[index]++;
       return static_cast<Role *>(data[index]);
+    }
+  }
+}
+
+Role *RoleList::generate_role_from_faction(int i)
+{
+  Faction *faction = static_cast<Faction *>(data[i]);
+  std::vector<std::pair<int, Alignment *>> alignments;
+
+  if (counts[i] == data[i]->limit) throw Error("Too many of faction: %s (at line %d)", faction->name.c_str(), line);
+
+  int temp = 0;
+  for (auto entry : faction->alignments)
+  {
+    Alignment *alignment = static_cast<Alignment *>(entry);
+    temp += alignment->roles.size() + 1;
+
+    alignments.push_back(std::pair<int, Alignment *>(temp, alignment));
+  }
+
+  int onset = i - temp - 1;
+  int len = alignments.size();
+
+  while (true)
+  {
+    int index = std::rand() % len;
+
+    int pos = onset + alignments[index].first;
+    if (counts[pos] != data[pos]->limit)
+    {
+      Role *role = generate_role_from_alignment(pos);
+      counts[pos]++;
+
+      return role;
     }
   }
 }
