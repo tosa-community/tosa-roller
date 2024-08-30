@@ -7,6 +7,14 @@ Role::Role(int pos, std::string name, int limit, std::vector<std::string> aliase
   this->b = color[2];
 }
 
+Role::Role(int pos, std::string name, int limit, std::vector<std::string> aliases, std::vector<int> color, std::vector<TargetData> target_data) : ListEntry(pos, name, limit, aliases)
+{
+  this->r = color[0];
+  this->g = color[1];
+  this->b = color[2];
+  this->target_data = target_data;
+}
+
 Role::~Role()
 {}
 

@@ -59,6 +59,8 @@ void RoleList::generate()
 
     if (!is_valid) throw Error("Invalid role name: %s (at line %d)", ientry.c_str(), line);
   }
+
+  targets.resize(output.size(), std::vector<int>());
 }
 
 Role *RoleList::generate_role_from_role(int i)
@@ -164,34 +166,6 @@ std::string RoleList::process_role_entry(std::string input)
   }).base(), output.end());
 
   return output;
-}
-
-std::string RoleList::to_string(bool verbose, bool color)
-{
-  std::string res;
-
-  for (int i = 0; i < output.size(); i++)
-  {
-    res.append("[");
-    res.append(std::to_string(i+1));
-    res.append("] - ");
-    res.append(output[i].second->get_colored_str(color));
-
-    if (verbose)
-    {
-      res.append(" (");
-      if (output[i].first->type() == ListEntry::Type::FACTION)
-      {
-        res.append("Random ");
-      }
-      res.append(output[i].first->name);
-      res.append(")");
-    }
-
-    res.append("\n");
-  }
-
-  return res;
 }
 
 void RoleList::shuffle()
@@ -306,4 +280,77 @@ void RoleList::_shuffle(std::vector<std::string> scrolls)
   }
 
   output = temp;
+}
+
+void RoleList::generate_targets()
+{
+  for (int i = 0; i < output.size(); i++)
+  {
+    Role *role = output[i].second;
+    for (auto target : role->target_data)
+    {
+      while (true)
+      {
+        int index = std::rand() % output.size();
+        Role *target_role = output[index].second;
+
+        std::cout << target_role->name << std::endl;
+
+        if (std::find(target.exclude.begin(), target.exclude.end(), target_role->name) != target.exclude.end()) continue;
+
+        ListEntry *target_alignment = data[target_role->alignment_pos];
+
+        if (std::find(target.exclude.begin(), target.exclude.end(), target_alignment->name) != target.exclude.end()) continue;
+
+        ListEntry *target_faction = data[target_role->faction_pos];
+
+        if (std::find(target.exclude.begin(), target.exclude.end(), target_faction->name) != target.exclude.end()) continue;
+
+        targets[i].push_back(index + 1);
+        break;
+      }
+    }
+  }
+}
+
+std::string RoleList::to_string(bool verbose, bool color)
+{
+  std::string res;
+
+  for (int i = 0; i < output.size(); i++)
+  {
+    res.append("[");
+    res.append(std::to_string(i+1));
+    res.append("] - ");
+    res.append(output[i].second->get_colored_str(color));
+
+    auto target_data = output[i].second->target_data;
+    if (targets[i].size())
+    {
+      res.append(" [");
+      for (int j = 0; j < targets[i].size(); j++)
+      {
+        res.append(target_data[j].name);
+        res.append(": ");
+        res.append(std::to_string(targets[i][j]));
+        if (j + 1 != targets[i].size()) res.append(", ");
+      }
+      res.append("]");
+    }
+
+    if (verbose)
+    {
+      res.append(" (");
+      if (output[i].first->type() == ListEntry::Type::FACTION)
+      {
+        res.append("Random ");
+      }
+      res.append(output[i].first->name);
+      res.append(")");
+    }
+
+    res.append("\n");
+  }
+
+  return res;
 }

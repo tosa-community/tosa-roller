@@ -28,13 +28,16 @@ int main(int argc, char **argv)
     app.add_option("-f,--from-file", file, "Generate list from file")->type_name("FILENAME");
 
     bool no_color = false;
-    app.add_option("--no-color", no_color, "Output without color");
+    app.add_flag("--no-color", no_color, "Output without color");
 
     std::string output_file;
     app.add_option("-o,--to-file", output_file, "Output to file")->type_name("FILENAME");
 
     bool no_scroll = false;
     app.add_flag("-r,--skip-scrolls", no_scroll, "Skip scroll selection");
+
+    bool skip_targets = false;
+    app.add_flag("-s,--skip-targets", skip_targets, "Skip target generation");
 
     bool verbose = false;
     app.add_flag("-V,--verbose", verbose, "Show extra information");
@@ -161,7 +164,25 @@ int main(int argc, char **argv)
 
           if (is_banned) continue;
 
-          Role *entry = new Role(pos, role["name"], role["limit"], role["aliases"], role["color"]);
+          Role *entry;
+          if (role.contains("targets"))
+          {
+            std::vector<Role::TargetData> target_data;
+            for (auto target : role["targets"])
+            {
+              Role::TargetData target_info;
+              target_info.name = target["name"];
+              for (auto entry : target["exclude"])
+              {
+                target_info.exclude.push_back(entry);
+              }
+
+              target_data.push_back(target_info);
+            }
+            entry = new Role(pos, role["name"], role["limit"], role["aliases"], role["color"], target_data);
+          }
+          else
+            entry = new Role(pos, role["name"], role["limit"], role["aliases"], role["color"]);
           entries.push_back(entry);
           alignment_roles.push_back(entry);
 
@@ -195,8 +216,12 @@ int main(int argc, char **argv)
 
     RoleList list(list_query, entries);
     list.generate();
+
     if (no_scroll) list.shuffle();
     else list.shuffle(scrolls);
+
+    if (!skip_targets) list.generate_targets();
+
     if (output_file.size() == 0)
     {
       std::cout << list.to_string(verbose, !no_color);

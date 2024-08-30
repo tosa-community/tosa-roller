@@ -26,6 +26,7 @@ class RoleList
   std::vector<int> counts;
 
   std::vector<std::pair<ListEntry *, Role *>> output;
+  std::vector<std::vector<int>> targets;
 
   unsigned int line = 0;
 
@@ -39,8 +40,12 @@ public:
   RoleList(std::vector<std::string> input, std::vector<ListEntry *> data);
 
   void generate();
+
   void shuffle();
   void shuffle(std::vector<std::string> scrolls);
+
+  void generate_targets();
+
   std::string to_string(bool verbose=false, bool color=true);
 
   static std::string process_role_entry(std::string input);

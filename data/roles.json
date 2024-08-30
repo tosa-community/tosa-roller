@@ -142,9 +142,9 @@
           "limit": -1,
           "aliases": ["corporate power", "corporatepower", "corpow", "corp"],
           "roles": [
-            { "name": "CEO",  "limit": 1, "aliases": ["ceo"], "color": [80, 173, 221] },
-            { "name": "Suppressor",  "limit": 1, "aliases": ["suppressor", "suppress", "supp"], "color": [80, 173, 221] },
-            { "name": "Director",  "limit": 1, "aliases": ["director", "direct", "dir"], "color": [80, 173, 221] }
+            { "name": "CEO", "limit": 1, "aliases": ["ceo"], "color": [80, 173, 221] },
+            { "name": "Suppressor", "limit": 1, "aliases": ["suppressor", "suppress", "supp"], "color": [80, 173, 221] },
+            { "name": "Director", "limit": 1, "aliases": ["director", "direct", "dir"], "color": [80, 173, 221] }
           ]
         },
         {
@@ -152,8 +152,8 @@
           "limit": -1,
           "aliases": ["corporate killing", "corporatekilling", "cork"],
           "roles": [
-            { "name": "Security",  "limit": 1, "aliases": ["security", "secur", "sec"], "color": [80, 173, 221] },
-            { "name": "Arms Dealer",  "limit": 1, "aliases": ["arms dealer", "armsdealer", "arms", "dealer", "ad"], "color": [80, 173, 221] }
+            { "name": "Security", "limit": 1, "aliases": ["security", "secur", "sec"], "color": [80, 173, 221] },
+            { "name": "Arms Dealer", "limit": 1, "aliases": ["arms dealer", "armsdealer", "arms", "dealer", "ad"], "color": [80, 173, 221] }
           ]
         },
         {
@@ -161,13 +161,13 @@
           "limit": -1,
           "aliases": ["corporate support", "corporatesupport", "cors", "corporate utility", "corporateutility", "coru"],
           "roles": [
-            { "name": "Executive",  "limit": 1, "aliases": ["executive", "exec"], "color": [80, 173, 221] },
-            { "name": "Interrogator",  "limit": 1, "aliases": ["interrogator", "interro", "inter"], "color": [80, 173, 221] },
-            { "name": "Noise",  "limit": 1, "aliases": ["noise"], "color": [80, 173, 221] },
-            { "name": "Broker",  "limit": 1, "aliases": ["broker", "brok"], "color": [80, 173, 221] },
-            { "name": "Saboteur",  "limit": 1, "aliases": ["saboteur", "sabo"], "color": [80, 173, 221] },
-            { "name": "Surveillance",  "limit": 1, "aliases": ["surveillance", "surveil"], "color": [80, 173, 221] },
-            { "name": "Caterer",  "limit": 1, "aliases": ["caterer", "cater"], "color": [80, 173, 221] }
+            { "name": "Executive", "limit": 1, "aliases": ["executive", "exec"], "color": [80, 173, 221] },
+            { "name": "Interrogator", "limit": 1, "aliases": ["interrogator", "interro", "inter"], "color": [80, 173, 221] },
+            { "name": "Noise", "limit": 1, "aliases": ["noise"], "color": [80, 173, 221] },
+            { "name": "Broker", "limit": 1, "aliases": ["broker", "brok"], "color": [80, 173, 221] },
+            { "name": "Saboteur", "limit": 1, "aliases": ["saboteur", "sabo"], "color": [80, 173, 221] },
+            { "name": "Surveillance", "limit": 1, "aliases": ["surveillance", "surveil"], "color": [80, 173, 221] },
+            { "name": "Caterer", "limit": 1, "aliases": ["caterer", "cater"], "color": [80, 173, 221] }
           ]
         },
         {
@@ -175,9 +175,9 @@
           "limit": -1,
           "aliases": ["corporate influence", "corportateinfluence", "cori", "ci", "corporate panic", "corporatepanic"],
           "roles": [
-            { "name": "Frauder",  "limit": 1, "aliases": ["frauder", "fraud"], "color": [80, 173, 221] },
-            { "name": "Administrator",  "limit": 1, "aliases": ["administrator", "admin"], "color": [80, 173, 221] },
-            { "name": "Corrupter",  "limit": 1, "aliases": ["corrupter", "corrupt", "corr"], "color": [80, 173, 221] }
+            { "name": "Frauder", "limit": 1, "aliases": ["frauder", "fraud"], "color": [80, 173, 221] },
+            { "name": "Administrator", "limit": 1, "aliases": ["administrator", "admin"], "color": [80, 173, 221] },
+            { "name": "Corrupter", "limit": 1, "aliases": ["corrupter", "corrupt", "corr"], "color": [80, 173, 221] }
           ]
         }
       ]
@@ -192,9 +192,9 @@
           "limit": -1,
           "aliases": ["spirits power", "spiritspower", "spow", "sp", "spirit power", "spiritpower"],
           "roles": [
-            { "name": "Channeler",  "limit": 1, "aliases": ["channeler", "channel", "chan"], "color": [200, 200, 200] },
-            { "name": "Adnoartina",  "limit": 1, "aliases": ["adnoartina", "adno"], "color": [200, 200, 200] },
-            { "name": "Dracolich",  "limit": 1, "aliases": ["dracolich", "draco"], "color": [200, 200, 200] }
+            { "name": "Channeler", "limit": 1, "aliases": ["channeler", "channel", "chan"], "color": [200, 200, 200] },
+            { "name": "Adnoartina", "limit": 1, "aliases": ["adnoartina", "adno"], "color": [200, 200, 200] },
+            { "name": "Dracolich", "limit": 1, "aliases": ["dracolich", "draco"], "color": [200, 200, 200] }
           ]
         },
         {
@@ -202,9 +202,20 @@
           "limit": -1,
           "aliases": ["spirits killing", "spiritskilling", "spik", "spk", "spirit killing", "spiritkilling"],
           "roles": [
-            { "name": "Spook",  "limit": 1, "aliases": ["spook"], "color": [200, 200, 200] },
-            { "name": "Eidolon",  "limit": 1, "aliases": ["eidolon", "eido"], "color": [200, 200, 200] },
-            { "name": "Onryō",  "limit": 1, "aliases": ["onryō", "onryo"], "color": [200, 200, 200] }
+            { "name": "Spook", "limit": 1, "aliases": ["spook"], "color": [200, 200, 200] },
+            {
+              "name": "Eidolon",
+              "limit": 1,
+              "aliases": ["eidolon", "eido"],
+              "color": [200, 200, 200],
+              "targets": [
+                {
+                  "name": "Quarry",
+                  "exclude": ["Spirits", "Neutral Evil", "Neutral Vindictive"]
+                }
+              ]
+            },
+            { "name": "Onryō", "limit": 1, "aliases": ["onryō", "onryo"], "color": [200, 200, 200] }
           ]
         },
         {
@@ -212,13 +223,13 @@
           "limit": -1,
           "aliases": ["spirits support", "spiritssupport", "ss", "spirit support", "spiritsupport", "spirits utility", "spiritsutility", "su", "spirit utility", "spiritutility"],
           "roles": [
-            { "name": "Poltergeist",  "limit": 1, "aliases": ["poltergeist", "polter", "polt"], "color": [200, 200, 200] },
-            { "name": "Daemon",  "limit": 1, "aliases": ["daemon"], "color": [200, 200, 200] },
-            { "name": "Wisp",  "limit": 1, "aliases": ["wisp"], "color": [200, 200, 200] },
-            { "name": "Apparition",  "limit": 1, "aliases": ["apparition", "appa", "app"], "color": [200, 200, 200] },
-            { "name": "Shade",  "limit": 1, "aliases": ["shade"], "color": [200, 200, 200] },
-            { "name": "Familiar",  "limit": 1, "aliases": ["familiar", "fami", "fam"], "color": [200, 200, 200] },
-            { "name": "Ker",  "limit": 1, "aliases": ["ker"], "color": [200, 200, 200] }
+            { "name": "Poltergeist", "limit": 1, "aliases": ["poltergeist", "polter", "polt"], "color": [200, 200, 200] },
+            { "name": "Daemon", "limit": 1, "aliases": ["daemon"], "color": [200, 200, 200] },
+            { "name": "Wisp", "limit": 1, "aliases": ["wisp"], "color": [200, 200, 200] },
+            { "name": "Apparition", "limit": 1, "aliases": ["apparition", "appa", "app"], "color": [200, 200, 200] },
+            { "name": "Shade", "limit": 1, "aliases": ["shade"], "color": [200, 200, 200] },
+            { "name": "Familiar", "limit": 1, "aliases": ["familiar", "fami", "fam"], "color": [200, 200, 200] },
+            { "name": "Ker", "limit": 1, "aliases": ["ker"], "color": [200, 200, 200] }
           ]
         }
       ]
@@ -233,8 +244,8 @@
           "limit": -1,
           "aliases": ["elementals power", "elementalspower", "epow", "ep", "elemental power", "elementalpower"],
           "roles": [
-            { "name": "Tonitrus",  "limit": 1, "aliases": ["tonitrus", "toni"], "color": [239, 122, 196] },
-            { "name": "Tempus",  "limit": 1, "aliases": ["tempus", "temp"], "color": [239, 122, 196] }
+            { "name": "Tonitrus", "limit": 1, "aliases": ["tonitrus", "toni"], "color": [239, 122, 196] },
+            { "name": "Tempus", "limit": 1, "aliases": ["tempus", "temp"], "color": [239, 122, 196] }
           ]
         },
         {
@@ -242,11 +253,11 @@
           "limit": 1,
           "aliases": ["elementals killing", "elementalskilling", "ek", "elemental killing", "elementalkilling"],
           "roles": [
-            { "name": "Igneus",  "limit": 1, "aliases": ["igneus", "igne"], "color": [239, 122, 196] },
-            { "name": "Aquata",  "limit": 1, "aliases": ["aquata", "aqua", "aquaneus"], "color": [239, 122, 196] },
-            { "name": "Exitius",  "limit": 1, "aliases": ["exitius", "exit", "exi"], "color": [239, 122, 196] },
-            { "name": "Glacienius",  "limit": 1, "aliases": ["glacienius", "glaci", "glac"], "color": [239, 122, 196] },
-            { "name": "Aegerum",  "limit": 1, "aliases": ["aegerum", "aeg", "venenus"], "color": [239, 122, 196] }
+            { "name": "Igneus", "limit": 1, "aliases": ["igneus", "igne"], "color": [239, 122, 196] },
+            { "name": "Aquata", "limit": 1, "aliases": ["aquata", "aqua", "aquaneus"], "color": [239, 122, 196] },
+            { "name": "Exitius", "limit": 1, "aliases": ["exitius", "exit", "exi"], "color": [239, 122, 196] },
+            { "name": "Glacienius", "limit": 1, "aliases": ["glacienius", "glaci", "glac"], "color": [239, 122, 196] },
+            { "name": "Aegerum", "limit": 1, "aliases": ["aegerum", "aeg", "venenus"], "color": [239, 122, 196] }
           ]
         },
         {
@@ -254,9 +265,9 @@
           "limit": -1,
           "aliases": ["elementals support", "elementalssupport", "es", "elemental support", "elementalsupport", "elementals utility", "elementalsutility", "eu", "elemental utility", "elementalutility"],
           "roles": [
-            { "name": "Menserus",  "limit": 1, "aliases": ["menserus", "mens"], "color": [239, 122, 196] },
-            { "name": "Aterran",  "limit": 1, "aliases": ["aterran", "aterr", "terra"], "color": [239, 122, 196] },
-            { "name": "Vitansun",  "limit": 1, "aliases": ["vitansun", "vitan", "vita"], "color": [239, 122, 196] }
+            { "name": "Menserus", "limit": 1, "aliases": ["menserus", "mens"], "color": [239, 122, 196] },
+            { "name": "Aterran", "limit": 1, "aliases": ["aterran", "aterr", "terra"], "color": [239, 122, 196] },
+            { "name": "Vitansun", "limit": 1, "aliases": ["vitansun", "vitan", "vita"], "color": [239, 122, 196] }
           ]
         },
         {
@@ -264,10 +275,10 @@
           "limit": -1,
           "aliases": ["elementals disruption", "elementalsdisruption", "ed", "elemental disruption", "elementaldisruption"],
           "roles": [
-            { "name": "Venteus",  "limit": 1, "aliases": ["venteus", "vent"], "color": [239, 122, 196] },
-            { "name": "Radia",  "limit": 1, "aliases": ["radia", "rad", "visal", "vis"], "color": [239, 122, 196] },
-            { "name": "Luxum",  "limit": 1, "aliases": ["luxum", "lux"], "color": [239, 122, 196] },
-            { "name": "Tenebrus",  "limit": 1, "aliases": ["tenebrus", "tene", "ten"], "color": [239, 122, 196] }
+            { "name": "Venteus", "limit": 1, "aliases": ["venteus", "vent"], "color": [239, 122, 196] },
+            { "name": "Radia", "limit": 1, "aliases": ["radia", "rad", "visal", "vis"], "color": [239, 122, 196] },
+            { "name": "Luxum", "limit": 1, "aliases": ["luxum", "lux"], "color": [239, 122, 196] },
+            { "name": "Tenebrus", "limit": 1, "aliases": ["tenebrus", "tene", "ten"], "color": [239, 122, 196] }
           ]
         }
       ]
@@ -282,10 +293,10 @@
           "limit": 4,
           "aliases": ["neutral apocalypse", "neutralapocalypse", "na", "horsemen", "horseman"],
           "roles": [
-            { "name": "Plaguebearer",  "limit": 1, "aliases": ["plaguebearer", "plague", "bearer", "pb"], "color": [255, 0, 78] },
-            { "name": "Berserker",  "limit": 1, "aliases": ["berserker", "bers", "serker"], "color": [255, 0, 78] },
-            { "name": "Baker",  "limit": 1, "aliases": ["baker"], "color": [255, 0, 78] },
-            { "name": "Soul Collector",  "limit": 1, "aliases": ["soul collector", "soulcollector", "soul", "collector", "sc"], "color": [255, 0, 78] }
+            { "name": "Plaguebearer", "limit": 1, "aliases": ["plaguebearer", "plague", "bearer", "pb"], "color": [255, 0, 78] },
+            { "name": "Berserker", "limit": 1, "aliases": ["berserker", "bers", "serker"], "color": [255, 0, 78] },
+            { "name": "Baker", "limit": 1, "aliases": ["baker"], "color": [255, 0, 78] },
+            { "name": "Soul Collector", "limit": 1, "aliases": ["soul collector", "soulcollector", "soul", "collector", "sc"], "color": [255, 0, 78] }
           ]
         },
         {
@@ -293,12 +304,23 @@
           "limit": -1,
           "aliases": ["neutral killing", "neutralkilling", "nk"],
           "roles": [
-            { "name": "Serial Killer",  "limit": 6, "aliases": ["serial killer", "serial", "sk"], "color": [29, 77, 252] },
-            { "name": "Arsonist",  "limit": 6, "aliases": ["arsonist", "arson", "arso"], "color": [219, 118, 1] },
-            { "name": "Werewolf",  "limit": 6, "aliases": ["werewolf", "ww"], "color": [157, 112, 56] },
-            { "name": "Shroud",  "limit": 6, "aliases": ["shroud"], "color": [102, 153, 255] },
-            { "name": "Cannibal",  "limit": 6, "aliases": ["cannibal", "canni", "cann"], "color": [229, 183, 137] },
-            { "name": "Avarice",  "limit": 6, "aliases": ["avarice", "avar", "ava"], "color": [222, 167, 0] }
+            { "name": "Serial Killer", "limit": 6, "aliases": ["serial killer", "serial", "sk"], "color": [29, 77, 252] },
+            { "name": "Arsonist", "limit": 6, "aliases": ["arsonist", "arson", "arso"], "color": [219, 118, 1] },
+            { "name": "Werewolf", "limit": 6, "aliases": ["werewolf", "ww"], "color": [157, 112, 56] },
+            { "name": "Shroud", "limit": 6, "aliases": ["shroud"], "color": [102, 153, 255] },
+            { "name": "Cannibal", "limit": 6, "aliases": ["cannibal", "canni", "cann"], "color": [229, 183, 137] },
+            {
+              "name": "Avarice",
+              "limit": 6,
+              "aliases": ["avarice", "avar", "ava"],
+              "color": [222, 167, 0],
+              "targets": [
+                {
+                  "name": "Obsession",
+                  "exclude": ["Neutral Evil", "Neutral Vindictive"]
+                }
+              ]
+            }
           ]
         },
         {
@@ -306,10 +328,10 @@
           "limit": -1,
           "aliases": ["neutral evil", "neutralevil", "ne"],
           "roles": [
-            { "name": "Jester",  "limit": 6, "aliases": ["jester", "jest"], "color": [245, 166, 212] },
-            { "name": "Executioner",  "limit": 6, "aliases": ["executioner", "exe"], "color": [148, 151, 151] },
-            { "name": "Doomsayer",  "limit": 6, "aliases": ["doomsayer", "doom", "sayer", "ds"], "color": [0, 204, 153] },
-            { "name": "Diablo",  "limit": 1, "aliases": ["diablo", "diab"], "color": [225, 95, 80] }
+            { "name": "Jester", "limit": 6, "aliases": ["jester", "jest"], "color": [245, 166, 212] },
+            { "name": "Executioner", "limit": 6, "aliases": ["executioner", "exe"], "color": [148, 151, 151] },
+            { "name": "Doomsayer", "limit": 6, "aliases": ["doomsayer", "doom", "sayer", "ds"], "color": [0, 204, 153] },
+            { "name": "Diablo", "limit": 1, "aliases": ["diablo", "diab"], "color": [225, 95, 80] }
           ]
         },
         {
@@ -317,8 +339,8 @@
           "limit": -1,
           "aliases": ["neutral vindictive", "neutralvindictive", "nv", "neutral pariah", "neutralpariah", "np"],
           "roles": [
-            { "name": "Conversus",  "limit": 6, "aliases": ["conversus", "convers", "conv"], "color": [153, 128, 240] },
-            { "name": "Sorcerer",  "limit": 1, "aliases": ["sorcerer", "sorc"], "color": [3, 186, 186] }
+            { "name": "Conversus", "limit": 6, "aliases": ["conversus", "convers", "conv"], "color": [153, 128, 240] },
+            { "name": "Sorcerer", "limit": 1, "aliases": ["sorcerer", "sorc"], "color": [3, 186, 186] }
           ]
         }
       ]
