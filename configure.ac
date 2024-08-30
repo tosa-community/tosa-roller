@@ -1,4 +1,4 @@
-AC_INIT([tosa-roller], [1.0])
+AC_INIT([tosa-roller], [1.0.0])
 AM_INIT_AUTOMAKE
 AC_PROG_CXX
 AC_CONFIG_FILES([Makefile])

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <cstdlib>
 #include "error/error.hpp"
 #include "list-entry/list-entry.hpp"
 #include "role/role.hpp"
@@ -23,7 +24,7 @@ int main(int argc, char **argv)
     app.add_option("-b,--bans", bans_str, "Comma-separated list of roles that should be prevented from rolling");
 
     std::string data_source;
-    app.add_option("-d,--data", data_source, "Path to the roles data JSON")->type_name("FILENAME")->required();
+    app.add_option("-d,--data", data_source, "Path to the roles data JSON")->type_name("FILENAME");
 
     std::string file;
     app.add_option("-f,--from-file", file, "Path to the file to generate the rolelist from")->type_name("FILENAME");
@@ -43,7 +44,18 @@ int main(int argc, char **argv)
     bool verbose = false;
     app.add_flag("-V,--verbose", verbose, "Show extra information in the output");
 
+    bool version = false;
+    app.add_flag("-v,--version", version, "Print version information on exit");
+
     CLI11_PARSE(app, argc, argv);
+
+    if (version)
+    {
+      std::cout << PACKAGE << " " << VERSION << std::endl;
+      return EXIT_SUCCESS;
+    }
+
+    if (data_source.size() == 0) throw Error("No data file specified");
 
     std::vector<std::string> bans;
     if (bans_str.size() != 0)
@@ -249,8 +261,8 @@ int main(int argc, char **argv)
   {
     std::cout << "\033[31m" << argv[0] << ":";
     if (e.line) std::cout << e.filename << ":" << e.line << ":";
-    std::cout << e.what() << "\033[0m" << std::endl;
-    return 1;
+    std::cout << " " << e.what() << "\033[0m" << std::endl;
+    return EXIT_FAILURE;
   }
-  return 0;
+  return EXIT_SUCCESS;
 }
