@@ -28,6 +28,7 @@ class RoleList
   std::vector<std::pair<ListEntry *, Role *>> output;
   std::vector<std::vector<int>> targets;
 
+  std::string filename;
   unsigned int line = 0;
 
   Role *generate_role_from_role(int i);
@@ -37,7 +38,7 @@ class RoleList
 
   void _shuffle(std::vector<std::string> scrolls);
 public:
-  RoleList(std::vector<std::string> input, std::vector<ListEntry *> data);
+  RoleList(std::string filename, std::vector<std::string> input, std::vector<ListEntry *> data);
   ~RoleList();
 
   void generate();

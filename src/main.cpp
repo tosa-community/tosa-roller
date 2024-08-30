@@ -1,5 +1,6 @@
 #include <CLI/CLI.hpp>
 #include <nlohmann/json.hpp>
+#include <exception>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -53,13 +54,11 @@ int main(int argc, char **argv)
       while (std::getline(bans_stream, entry, ',')) bans.push_back(RoleList::process_role_entry(entry));
     }
 
-    std::ifstream data_stream(data_source);
-    nlohmann::json data = nlohmann::json::parse(data_stream);
-
     std::vector<std::string> list_query;
 
     if (file.size() == 0)
     {
+      file = "stdin";
 
       std::cout << "Enter role list (Leave empty to continue):" << std::endl;
 
@@ -106,37 +105,22 @@ int main(int argc, char **argv)
     std::vector<ListEntry *> entries;
     int pos = 0;
 
-    for (auto faction : data["factions"])
+    try
     {
-      std::vector<ListEntry *> faction_roles;
+      std::ifstream data_stream(data_source);
+      nlohmann::json data = nlohmann::json::parse(data_stream);
 
-      bool is_banned = false;
-
-      for (int i = 0; i < faction["aliases"].size(); i++)
+      for (auto faction : data["factions"])
       {
-        for (int j = 0; j < bans.size(); j++)
-        {
-          if (faction["aliases"][i] == bans[j])
-          {
-            is_banned = true;
-            break;
-          }
-        }
-      }
-
-      if (is_banned) continue;
-
-      for (auto alignment : faction["alignments"])
-      {
-        std::vector<ListEntry *> alignment_roles;
+        std::vector<ListEntry *> faction_roles;
 
         bool is_banned = false;
 
-        for (int i = 0; i < alignment["aliases"].size(); i++)
+        for (int i = 0; i < faction["aliases"].size(); i++)
         {
           for (int j = 0; j < bans.size(); j++)
           {
-            if (alignment["aliases"][i] == bans[j])
+            if (faction["aliases"][i] == bans[j])
             {
               is_banned = true;
               break;
@@ -146,15 +130,17 @@ int main(int argc, char **argv)
 
         if (is_banned) continue;
 
-        for (auto role : alignment["roles"])
+        for (auto alignment : faction["alignments"])
         {
+          std::vector<ListEntry *> alignment_roles;
+
           bool is_banned = false;
 
-          for (int i = 0; i < role["aliases"].size(); i++)
+          for (int i = 0; i < alignment["aliases"].size(); i++)
           {
             for (int j = 0; j < bans.size(); j++)
             {
-              if (role["aliases"][i] == bans[j])
+              if (alignment["aliases"][i] == bans[j])
               {
                 is_banned = true;
                 break;
@@ -164,57 +150,80 @@ int main(int argc, char **argv)
 
           if (is_banned) continue;
 
-          Role *entry;
-          if (role.contains("targets"))
+          for (auto role : alignment["roles"])
           {
-            std::vector<Role::TargetData> target_data;
-            for (auto target : role["targets"])
-            {
-              Role::TargetData target_info;
-              target_info.name = target["name"];
-              for (auto entry : target["exclude"])
-              {
-                target_info.exclude.push_back(entry);
-              }
+            bool is_banned = false;
 
-              target_data.push_back(target_info);
+            for (int i = 0; i < role["aliases"].size(); i++)
+            {
+              for (int j = 0; j < bans.size(); j++)
+              {
+                if (role["aliases"][i] == bans[j])
+                {
+                  is_banned = true;
+                  break;
+                }
+              }
             }
-            entry = new Role(pos, role["name"], role["limit"], role["aliases"], role["color"], target_data);
+
+            if (is_banned) continue;
+
+            Role *entry;
+            if (role.contains("targets"))
+            {
+              std::vector<Role::TargetData> target_data;
+              for (auto target : role["targets"])
+              {
+                Role::TargetData target_info;
+                target_info.name = target["name"];
+                for (auto entry : target["exclude"])
+                {
+                  target_info.exclude.push_back(entry);
+                }
+
+                target_data.push_back(target_info);
+              }
+              entry = new Role(pos, role["name"], role["limit"], role["aliases"], role["color"], target_data);
+            }
+            else
+              entry = new Role(pos, role["name"], role["limit"], role["aliases"], role["color"]);
+            entries.push_back(entry);
+            alignment_roles.push_back(entry);
+
+            pos++;
           }
-          else
-            entry = new Role(pos, role["name"], role["limit"], role["aliases"], role["color"]);
-          entries.push_back(entry);
-          alignment_roles.push_back(entry);
+
+          Alignment *alignment_entry = new Alignment(pos, alignment["name"], alignment["limit"], alignment["aliases"], alignment_roles);
+          if (alignment_entry->roles.size() == 0) continue;
+
+          entries.push_back(alignment_entry);
+          faction_roles.push_back(alignment_entry);
 
           pos++;
         }
 
-        Alignment *alignment_entry = new Alignment(pos, alignment["name"], alignment["limit"], alignment["aliases"], alignment_roles);
-        if (alignment_entry->roles.size() == 0) continue;
+        Faction *faction_entry = new Faction(pos, faction["name"], faction["limit"], faction["aliases"], faction_roles);
+        if (faction_entry->alignments.size() == 0) continue;
 
-        entries.push_back(alignment_entry);
-        faction_roles.push_back(alignment_entry);
+        entries.push_back(faction_entry);
 
         pos++;
       }
 
-      Faction *faction_entry = new Faction(pos, faction["name"], faction["limit"], faction["aliases"], faction_roles);
-      if (faction_entry->alignments.size() == 0) continue;
+      for (auto group : data["groups"])
+      {
+        Group *group_entry = new Group(pos, group["name"], -1, group["aliases"], entries, group["factions"], group["alignments"], group["roles"]);
+        entries.push_back(group_entry);
 
-      entries.push_back(faction_entry);
-
-      pos++;
+        pos++;
+      }
     }
-
-    for (auto group : data["groups"])
+    catch (std::exception e)
     {
-      Group *group_entry = new Group(pos, group["name"], -1, group["aliases"], entries, group["factions"], group["alignments"], group["roles"]);
-      entries.push_back(group_entry);
-
-      pos++;
+      throw Error("Invalid data file");
     }
 
-    RoleList list(list_query, entries);
+    RoleList list(file, list_query, entries);
     list.generate();
 
     if (no_scroll) list.shuffle();
@@ -238,7 +247,9 @@ int main(int argc, char **argv)
   }
   catch (Error& e)
   {
-    std::cout << e.what() << std::endl;
+    std::cout << "\033[31m" << argv[0] << ":";
+    if (e.line) std::cout << e.filename << ":" << e.line << ":";
+    std::cout << e.what() << "\033[0m" << std::endl;
     return 1;
   }
   return 0;

@@ -1,7 +1,8 @@
 #include "role-list.hpp"
 
-RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data)
+RoleList::RoleList(std::string filename, std::vector<std::string> input, std::vector<ListEntry *> data)
 {
+  this->filename = filename;
   this->data = data;
   for (auto entry : input) this->query.push_back(process_role_entry(entry));
 
@@ -62,7 +63,7 @@ void RoleList::generate()
       }
     }
 
-    if (!is_valid) throw Error("Invalid role name: %s (at line %d)", ientry.c_str(), line);
+    if (!is_valid) throw Error(filename, line, "Invalid role name: %s", ientry.c_str());
   }
 
   targets.resize(output.size(), std::vector<int>());
@@ -72,9 +73,9 @@ Role *RoleList::generate_role_from_role(int i)
 {
   Role *role = static_cast<Role *>(data[i]);
 
-  if (counts[role->faction_pos] == data[role->faction_pos]->limit) throw Error("Too many of faction: %s (at line %d)", data[role->faction_pos]->name.c_str(), line);
-  if (counts[role->alignment_pos] == data[role->alignment_pos]->limit) throw Error("Too many of alignment: %s (at line %d)", data[role->alignment_pos]->name.c_str(), line);
-  if (counts[role->pos] == data[role->pos]->limit) throw Error("Too many of role: %s (at line %d)", data[role->pos]->name.c_str(), line);
+  if (counts[role->faction_pos] == data[role->faction_pos]->limit) throw Error(filename, line, "Too many of faction: %s", data[role->faction_pos]->name.c_str());
+  if (counts[role->alignment_pos] == data[role->alignment_pos]->limit) throw Error(filename, line, "Too many of alignment: %s", data[role->alignment_pos]->name.c_str());
+  if (counts[role->pos] == data[role->pos]->limit) throw Error(filename, line, "Too many of role: %s", data[role->pos]->name.c_str());
 
   counts[role->faction_pos]++;
   counts[role->alignment_pos]++;
@@ -87,8 +88,8 @@ Role *RoleList::generate_role_from_alignment(int i)
 {
   Alignment *alignment = static_cast<Alignment *>(data[i]);
 
-  if (counts[alignment->faction_pos] == data[alignment->faction_pos]->limit) throw Error("Too many of faction: %s (at line %d)", data[alignment->faction_pos]->name.c_str(), line);
-  if (counts[alignment->pos] == data[alignment->pos]->limit) throw Error("Too many of alignment: %s (at line %d)", data[alignment->pos]->name.c_str(), line);
+  if (counts[alignment->faction_pos] == data[alignment->faction_pos]->limit) throw Error(filename, line, "Too many of faction: %s", data[alignment->faction_pos]->name.c_str());
+  if (counts[alignment->pos] == data[alignment->pos]->limit) throw Error(filename, line, "Too many of alignment: %s (at line %d)", data[alignment->pos]->name.c_str());
 
   counts[alignment->faction_pos]++;
   counts[alignment->pos]++;
@@ -109,7 +110,7 @@ Role *RoleList::generate_role_from_faction(int i)
 {
   Faction *faction = static_cast<Faction *>(data[i]);
 
-  if (counts[faction->pos] == data[faction->pos]->limit) throw Error("Too many of faction: %s (at line %d)", data[faction->pos]->name.c_str(), line);
+  if (counts[faction->pos] == data[faction->pos]->limit) throw Error(filename, line, "Too many of faction: %s", data[faction->pos]->name.c_str());
   counts[faction->pos]++;
 
   while (true)
