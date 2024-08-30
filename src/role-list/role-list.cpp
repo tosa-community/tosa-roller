@@ -300,8 +300,6 @@ void RoleList::generate_targets()
         int index = std::rand() % output.size();
         Role *target_role = output[index].second;
 
-        std::cout << target_role->name << std::endl;
-
         if (std::find(target.exclude.begin(), target.exclude.end(), target_role->name) != target.exclude.end()) continue;
 
         ListEntry *target_alignment = data[target_role->alignment_pos];
