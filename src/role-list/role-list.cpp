@@ -66,12 +66,11 @@ Role *RoleList::generate_role_from_role(int i)
   Role *role = static_cast<Role *>(data[i]);
 
   if (counts[role->faction_pos] == data[role->faction_pos]->limit) throw Error("Too many of faction: %s (at line %d)", data[role->faction_pos]->name.c_str(), line);
-  counts[role->faction_pos]++;
-
   if (counts[role->alignment_pos] == data[role->alignment_pos]->limit) throw Error("Too many of alignment: %s (at line %d)", data[role->alignment_pos]->name.c_str(), line);
-  counts[role->alignment_pos]++;
-
   if (counts[role->pos] == data[role->pos]->limit) throw Error("Too many of role: %s (at line %d)", data[role->pos]->name.c_str(), line);
+
+  counts[role->faction_pos]++;
+  counts[role->alignment_pos]++;
   counts[role->pos]++;
 
   return role;
@@ -82,9 +81,9 @@ Role *RoleList::generate_role_from_alignment(int i)
   Alignment *alignment = static_cast<Alignment *>(data[i]);
 
   if (counts[alignment->faction_pos] == data[alignment->faction_pos]->limit) throw Error("Too many of faction: %s (at line %d)", data[alignment->faction_pos]->name.c_str(), line);
-  counts[alignment->faction_pos]++;
-
   if (counts[alignment->pos] == data[alignment->pos]->limit) throw Error("Too many of alignment: %s (at line %d)", data[alignment->pos]->name.c_str(), line);
+
+  counts[alignment->faction_pos]++;
   counts[alignment->pos]++;
 
   while (true)
