@@ -306,6 +306,5 @@ void RoleList::_shuffle(std::vector<std::string> scrolls)
     output.erase(it);
   }
 
-  output.clear();
   output = temp;
 }
