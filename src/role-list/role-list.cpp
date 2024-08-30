@@ -8,6 +8,11 @@ RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data
   std::srand(std::time(nullptr));
 }
 
+RoleList::~RoleList()
+{
+  for (auto entry : data) delete entry;
+}
+
 void RoleList::generate()
 {
   counts.resize(this->data.size(), 0);

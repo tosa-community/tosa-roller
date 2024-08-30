@@ -38,6 +38,7 @@ class RoleList
   void _shuffle(std::vector<std::string> scrolls);
 public:
   RoleList(std::vector<std::string> input, std::vector<ListEntry *> data);
+  ~RoleList();
 
   void generate();
 
