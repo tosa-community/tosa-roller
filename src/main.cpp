@@ -20,28 +20,28 @@ int main(int argc, char **argv)
     CLI::App app("A role-list generator for Town of Salem: Anticipation");
 
     std::string bans_str;
-    app.add_option("-b,--bans", bans_str, "Comma-separated roles to prevent from being rolled");
+    app.add_option("-b,--bans", bans_str, "Comma-separated list of roles that should be prevented from rolling");
 
     std::string data_source;
-    app.add_option("-d,--data", data_source, "Path to data source")->type_name("FILENAME")->required();
+    app.add_option("-d,--data", data_source, "Path to the roles data JSON")->type_name("FILENAME")->required();
 
     std::string file;
-    app.add_option("-f,--from-file", file, "Generate list from file")->type_name("FILENAME");
+    app.add_option("-f,--from-file", file, "Path to the file to generate the rolelist from")->type_name("FILENAME");
 
     bool no_color = false;
-    app.add_flag("--no-color", no_color, "Output without color");
+    app.add_flag("--no-color", no_color, "Display output without colour");
 
     std::string output_file;
-    app.add_option("-o,--to-file", output_file, "Output to file")->type_name("FILENAME");
+    app.add_option("-o,--to-file", output_file, "Path of the file to write the output to")->type_name("FILENAME");
 
     bool no_scroll = false;
-    app.add_flag("-r,--skip-scrolls", no_scroll, "Skip scroll selection");
+    app.add_flag("-r,--skip-scrolls", no_scroll, "Skip scrolls prompt");
 
     bool skip_targets = false;
     app.add_flag("-s,--skip-targets", skip_targets, "Skip target generation");
 
     bool verbose = false;
-    app.add_flag("-V,--verbose", verbose, "Show extra information");
+    app.add_flag("-V,--verbose", verbose, "Show extra information in the output");
 
     CLI11_PARSE(app, argc, argv);
 

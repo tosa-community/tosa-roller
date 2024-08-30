@@ -1,0 +1,189 @@
+{
+  "factions": [
+    {
+      "name": "Town",
+      "limit": -1,
+      "aliases": ["random town", "randomtown", "rt"],
+      "alignments": [
+        {
+          "name": "Town Power",
+          "limit": 3,
+          "aliases": ["town power", "townpower", "tpow"],
+          "roles": [
+            { "name": "Jailor", "limit": 1, "aliases": ["jailor"], "color": [6, 224, 12] },
+            { "name": "Mayor", "limit": 1, "aliases": ["mayor"], "color": [6, 224, 12] },
+            { "name": "Monarch", "limit": 1, "aliases": ["monarch", "mon"], "color": [6, 224, 12] },
+            { "name": "Prosecutor", "limit": 1, "aliases": ["prosecutor", "pros"], "color": [6, 224, 12] },
+            { "name": "Marshal", "limit": 1, "aliases": ["marshal", "marshall", "marsh"], "color": [6, 224, 12] }
+          ]
+        },
+        {
+          "name": "Town Killing",
+          "limit": -1,
+          "aliases": ["town killing", "townkilling", "tk"],
+          "roles": [
+            { "name": "Vigilante", "limit": 6, "aliases": ["vigilante", "vigi", "vig"], "color": [6, 224, 12] },
+            { "name": "Veteran", "limit": 6, "aliases": ["veteran", "vet"], "color": [6, 224, 12] },
+            { "name": "Deputy", "limit": 1, "aliases": ["deputy", "dep"], "color": [6, 224, 12] },
+            { "name": "Trickster", "limit": 6, "aliases": ["trickster", "trick"], "color": [6, 224, 12] }
+          ]
+        },
+        {
+          "name": "Town Support",
+          "limit": -1,
+          "aliases": ["town support", "townsupport", "ts"],
+          "roles": [
+            { "name": "Tavern Keeper", "limit": 6, "aliases": ["escort", "esc", "tavern keeper", "tavernkeeper", "tavern", "tav"], "color": [6, 224, 12] },
+            { "name": "Retributionist", "limit": 6, "aliases": ["retributionist", "retri", "ret"], "color": [6, 224, 12] },
+            { "name": "Amnesiac", "limit": 6, "aliases": ["amnesiac", "amne"], "color": [6, 224, 12] },
+            { "name": "Admirer", "limit": 6, "aliases": ["admirer", "admi", "adm"], "color": [6, 224, 12] },
+            { "name": "Socialite", "limit": 6, "aliases": ["socialite", "socialist", "soci", "soc"], "color": [6, 224, 12] }
+          ]
+        },
+        {
+          "name": "Town Investigative",
+          "limit": -1,
+          "aliases": ["town investigative", "towninvestigative", "ti"],
+          "roles": [
+            { "name": "Sheriff", "limit": 6, "aliases": ["sheriff", "sher"], "color": [6, 224, 12] },
+            { "name": "Investigator", "limit": 6, "aliases": ["investigator", "invest"], "color": [6, 224, 12] },
+            { "name": "Spy", "limit": 6, "aliases": ["spy"], "color": [6, 224, 12] },
+            { "name": "Lookout", "limit": 6, "aliases": ["lookout", "look", "lo"], "color": [6, 224, 12] },
+            { "name": "Psychic", "limit": 6, "aliases": ["psychic", "psych", "psy"], "color": [6, 224, 12] },
+            { "name": "Tracker", "limit": 6, "aliases": ["tracker", "track"], "color": [6, 224, 12] },
+            { "name": "Coroner", "limit": 6, "aliases": ["coroner", "coro", "cor"], "color": [6, 224, 12] },
+            { "name": "Seer", "limit": 6, "aliases": ["seer"], "color": [6, 224, 12] }
+          ]
+        },
+        {
+          "name": "Town Protective",
+          "limit": -1,
+          "aliases": ["town protective", "townprotective", "tprot", "tpro", "tpr", "tp"],
+          "roles": [
+            { "name": "Cleric", "limit": 6, "aliases": ["doctor", "doc", "cleric", "cler"], "color": [6, 224, 12] },
+            { "name": "Bodyguard", "limit": 6, "aliases": ["bodyguard", "bg"], "color": [6, 224, 12] },
+            { "name": "Crusader", "limit": 6, "aliases": ["crusader", "crus"], "color": [6, 224, 12] },
+            { "name": "Trapper", "limit": 6, "aliases": ["trapper"], "color": [6, 224, 12] },
+            { "name": "Priest", "limit": 6, "aliases": ["priest"], "color": [6, 224, 12] },
+            { "name": "Castle", "limit": 6, "aliases": ["castle"], "color": [6, 224, 12] },
+            { "name": "Stargazer", "limit": 6, "aliases": ["stargazer", "star", "gazer", "sg"], "color": [6, 224, 12] },
+            { "name": "Inventor", "limit": 6, "aliases": ["inventor", "invent"], "color": [6, 224, 12] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Coven",
+      "limit": 4,
+      "aliases": ["random coven", "randomcoven", "rcov", "rc"],
+      "alignments": [
+        {
+          "name": "Coven Power",
+          "limit": -1,
+          "aliases": ["coven power", "covenpower", "covpow", "covp", "cpow", "cp"],
+          "roles": [
+            { "name": "Coven Leader", "limit": 1, "aliases": ["coven leader", "covenleader", "cl"], "color": [181, 69, 255] },
+            { "name": "Hex Master", "limit": 1, "aliases": ["hex master", "hexmaster", "hex", "hm"], "color": [181, 69, 255] },
+            { "name": "Witch", "limit": 1, "aliases": ["witch"], "color": [181, 69, 255] }
+          ]
+        },
+        {
+          "name": "Coven Killing",
+          "limit": -1,
+          "aliases": ["coven killing", "covenkilling", "covk", "ck"],
+          "roles": [
+            { "name": "Jinx", "limit": 1, "aliases": ["jinx"], "color": [181, 69, 255] },
+            { "name": "Ritualist", "limit": 1, "aliases": ["ritualist", "rit"], "color": [181, 69, 255] },
+            { "name": "Conjurer", "limit": 1, "aliases": ["conjurer", "conj"], "color": [181, 69, 255] }
+          ]
+        },
+        {
+          "name": "Coven Utility",
+          "limit": -1,
+          "aliases": ["coven support", "covensupport", "covs", "coven utility", "covenutility", "covu", "cu"],
+          "roles": [
+            { "name": "Potion Master", "limit": 1, "aliases": ["potion master", "potionmaster", "potion", "pmer", "pm"], "color": [181, 69, 255] },
+            { "name": "Poisoner", "limit": 1, "aliases": ["poisoner", "pois"], "color": [181, 69, 255] },
+            { "name": "Necromancer", "limit": 1, "aliases": ["necromancer", "necro"], "color": [181, 69, 255] },
+            { "name": "Voodoo Master", "limit": 1, "aliases": ["voodoo master", "voodoo", "vood", "vm"], "color": [181, 69, 255] },
+            { "name": "Wildling", "limit": 1, "aliases": ["wildling", "wild"], "color": [181, 69, 255] }
+          ]
+        },
+        {
+          "name": "Coven Deception",
+          "limit": -1,
+          "aliases": ["coven deception", "covendeception", "covd", "cd"],
+          "roles": [
+            { "name": "Medusa", "limit": 1, "aliases": ["medusa", "medu", "dusa"], "color": [181, 69, 255] },
+            { "name": "Enchanter", "limit": 1, "aliases": ["enchanter", "enchant", "ench"], "color": [181, 69, 255] },
+            { "name": "Illusionist", "limit": 1, "aliases": ["illusionist", "illusion", "illu"], "color": [181, 69, 255] },
+            { "name": "Dreamweaver", "limit": 1, "aliases": ["dreamweaver", "dream", "weaver", "dw"], "color": [181, 69, 255] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Neutrals",
+      "limit": -1,
+      "aliases": ["random neutral", "randomneutral", "rn"],
+      "alignments": [
+        {
+          "name": "Neutral Apocalypse",
+          "limit": 4,
+          "aliases": ["neutral apocalypse", "neutralapocalypse", "na", "horsemen", "horseman"],
+          "roles": [
+            { "name": "Plaguebearer", "limit": 1, "aliases": ["plaguebearer", "plague", "bearer", "pb"], "color": [255, 0, 78] },
+            { "name": "Berserker", "limit": 1, "aliases": ["berserker", "bers", "serker"], "color": [255, 0, 78] },
+            { "name": "Baker", "limit": 1, "aliases": ["baker"], "color": [255, 0, 78] },
+            { "name": "Soul Collector", "limit": 1, "aliases": ["soul collector", "soulcollector", "soul", "collector", "sc"], "color": [255, 0, 78] }
+          ]
+        },
+        {
+          "name": "Neutral Killing",
+          "limit": -1,
+          "aliases": ["neutral killing", "neutralkilling", "nk"],
+          "roles": [
+            { "name": "Serial Killer", "limit": 6, "aliases": ["serial killer", "serial", "sk"], "color": [29, 77, 252] },
+            { "name": "Arsonist", "limit": 6, "aliases": ["arsonist", "arson", "arso"], "color": [219, 118, 1] },
+            { "name": "Werewolf", "limit": 6, "aliases": ["werewolf", "ww"], "color": [157, 112, 56] },
+            { "name": "Shroud", "limit": 6, "aliases": ["shroud"], "color": [102, 153, 255] }
+          ]
+        },
+        {
+          "name": "Neutral Evil",
+          "limit": -1,
+          "aliases": ["neutral evil", "neutralevil", "ne"],
+          "roles": [
+            { "name": "Jester", "limit": 6, "aliases": ["jester", "jest"], "color": [245, 166, 212] },
+            { "name": "Executioner", "limit": 6, "aliases": ["executioner", "exe"], "color": [148, 151, 151] },
+            { "name": "Pirate", "limit": 1, "aliases": ["pirate"], "color": [236, 194, 62] },
+            { "name": "Doomsayer", "limit": 6, "aliases": ["doomsayer", "doom", "sayer", "ds"], "color": [0, 204, 153] }
+          ]
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "Any",
+      "aliases": ["any", "*"],
+      "factions": ["Town", "Coven", "Neutrals"],
+      "alignments": [],
+      "roles": []
+    },
+    {
+      "name": "Common Town",
+      "aliases": ["common town", "commontown", "ct"],
+      "factions": [],
+      "alignments": ["Town Killing", "Town Support", "Town Investigative", "Town Protective"],
+      "roles": []
+    },
+    {
+      "name": "Common Coven",
+      "aliases": ["common coven", "commoncoven", "cc"],
+      "factions": [],
+      "alignments": ["Coven Utility", "Coven Deception"],
+      "roles": []
+    }
+  ]
+}

@@ -14,7 +14,7 @@
             { "name": "Mayor", "limit": 1, "aliases": ["mayor"], "color": [6, 224, 12] },
             { "name": "Monarch", "limit": 1, "aliases": ["monarch", "mon"], "color": [6, 224, 12] },
             { "name": "Prosecutor", "limit": 1, "aliases": ["prosecutor", "pros"], "color": [6, 224, 12] },
-            { "name": "Marshal", "limit": 1, "aliases": ["maarshal", "marshall", "marsh"], "color": [6, 224, 12] },
+            { "name": "Marshal", "limit": 1, "aliases": ["marshal", "marshall", "marsh"], "color": [6, 224, 12] },
             { "name": "Magus", "limit": 1, "aliases": ["magus", "mag"], "color": [6, 224, 12] }
           ]
         },
@@ -36,12 +36,11 @@
           "limit": -1,
           "aliases": ["town support", "townsupport", "ts"],
           "roles": [
-            { "name": "Escort", "limit": 6, "aliases": ["escort", "esc", "tavern keeper", "tavernkeeper", "tavern", "tav"], "color": [6, 224, 12] },
+            { "name": "Tavern Keeper", "limit": 6, "aliases": ["escort", "esc", "tavern keeper", "tavernkeeper", "tavern", "tav"], "color": [6, 224, 12] },
             { "name": "Retributionist", "limit": 6, "aliases": ["retributionist", "retri", "ret"], "color": [6, 224, 12] },
             { "name": "Amnesiac", "limit": 6, "aliases": ["amnesiac", "amne"], "color": [6, 224, 12] },
             { "name": "Admirer", "limit": 6, "aliases": ["admirer", "admi", "adm"], "color": [6, 224, 12] },
             { "name": "Socialite", "limit": 6, "aliases": ["socialite", "socialist", "soci", "soc"], "color": [6, 224, 12] },
-            { "name": "Transporter", "limit": 6, "aliases": ["transporter", "trans"], "color": [6, 224, 12] },
             { "name": "Chad", "limit": 6, "aliases": ["chad"], "color": [6, 224, 12] }
           ]
         },
@@ -67,7 +66,7 @@
           "limit": -1,
           "aliases": ["town protective", "townprotective", "tprot", "tpro", "tpr", "tp"],
           "roles": [
-            { "name": "Doctor", "limit": 6, "aliases": ["doctor", "doc", "cleric", "cler"], "color": [6, 224, 12] },
+            { "name": "Cleric", "limit": 6, "aliases": ["doctor", "doc", "cleric", "cler"], "color": [6, 224, 12] },
             { "name": "Bodyguard", "limit": 6, "aliases": ["bodyguard", "bg"], "color": [6, 224, 12] },
             { "name": "Crusader", "limit": 6, "aliases": ["crusader", "crus"], "color": [6, 224, 12] },
             { "name": "Trapper", "limit": 6, "aliases": ["trapper"], "color": [6, 224, 12] },
@@ -107,7 +106,7 @@
           ]
         },
         {
-          "name": "Coven Support",
+          "name": "Coven Utility",
           "limit": -1,
           "aliases": ["coven support", "covensupport", "covs", "coven utility", "covenutility", "covu", "cu"],
           "roles": [
@@ -157,7 +156,7 @@
           ]
         },
         {
-          "name": "Corporate Support",
+          "name": "Corporate Utility",
           "limit": -1,
           "aliases": ["corporate support", "corporatesupport", "cors", "corporate utility", "corporateutility", "coru"],
           "roles": [
@@ -219,7 +218,7 @@
           ]
         },
         {
-          "name": "Spirits Support",
+          "name": "Spirits Utility",
           "limit": -1,
           "aliases": ["spirits support", "spiritssupport", "ss", "spirit support", "spiritsupport", "spirits utility", "spiritsutility", "su", "spirit utility", "spiritutility"],
           "roles": [
@@ -261,7 +260,7 @@
           ]
         },
         {
-          "name": "Elementals Support",
+          "name": "Elementals Utility",
           "limit": -1,
           "aliases": ["elementals support", "elementalssupport", "es", "elemental support", "elementalsupport", "elementals utility", "elementalsutility", "eu", "elemental utility", "elementalutility"],
           "roles": [
@@ -330,6 +329,7 @@
           "roles": [
             { "name": "Jester", "limit": 6, "aliases": ["jester", "jest"], "color": [245, 166, 212] },
             { "name": "Executioner", "limit": 6, "aliases": ["executioner", "exe"], "color": [148, 151, 151] },
+            { "name": "Pirate", "limit": 1, "aliases": ["pirate"], "color": [236, 194, 62] },
             { "name": "Doomsayer", "limit": 6, "aliases": ["doomsayer", "doom", "sayer", "ds"], "color": [0, 204, 153] },
             { "name": "Diablo", "limit": 1, "aliases": ["diablo", "diab"], "color": [225, 95, 80] }
           ]
@@ -352,13 +352,6 @@
       "aliases": ["any", "*"],
       "factions": ["Town", "Coven", "Corporate", "Spirits", "Elementals", "Neutrals"],
       "alignments": [],
-      "roles": []
-    },
-    {
-      "name": "Common Town",
-      "aliases": ["common town", "commontown", "ct"],
-      "factions": [],
-      "alignments": ["Town Killing", "Town Support", "Town Investigative", "Town Protective"],
       "roles": []
     }
   ]
