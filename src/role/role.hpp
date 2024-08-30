@@ -12,7 +12,10 @@ class Role : public ListEntry
   unsigned int g;
   unsigned int b;
 public:
-  Role(std::string name, int limit, std::vector<std::string> aliases, std::vector<int> color);
+  int alignment_pos;
+  int faction_pos;
+
+  Role(int pos, std::string name, int limit, std::vector<std::string> aliases, std::vector<int> color);
   ~Role();
 
   std::string get_colored_str(bool color=true);

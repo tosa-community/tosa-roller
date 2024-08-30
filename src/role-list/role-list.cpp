@@ -4,37 +4,24 @@ RoleList::RoleList(std::vector<std::string> input, std::vector<ListEntry *> data
 {
   this->data = data;
   for (auto entry : input) this->query.push_back(process_role_entry(entry));
+
+  std::srand(std::time(nullptr));
 }
 
 void RoleList::generate()
 {
-  std::srand(std::time(nullptr));
-
   counts.resize(this->data.size(), 0);
 
-  for (auto input_entry : this->query)
+  for (auto ientry : this->query)
   {
     line++;
 
-    bool role_is_valid = false;
-    for (int i = 0; i < this->data.size(); i++)
+    bool is_valid = false;
+    for (int i = 0; i < data.size(); i++)
     {
       std::vector<std::string> aliases = data[i]->aliases;
-      if (std::find(aliases.begin(), aliases.end(), input_entry) != aliases.end())
+      if (std::find(aliases.begin(), aliases.end(), ientry) != aliases.end())
       {
-        if (counts[i] == data[i]->limit)
-        {
-          switch (data[i]->type())
-          {
-          case ListEntry::Type::ROLE:
-            throw Error("Too many of role: %s (at line %d)", data[i]->name.c_str(), line);
-          case ListEntry::Type::ALIGNMENT:
-            throw Error("Too many of alignment: %s (at line %d)", data[i]->name.c_str(), line);
-          case ListEntry::Type::FACTION:
-            throw Error("Too many of faction: %s (at line %d)", data[i]->name.c_str(), line);
-          }
-        }
-
         switch (data[i]->type())
         {
         case ListEntry::Type::ROLE:
@@ -65,57 +52,49 @@ void RoleList::generate()
         }
         }
 
-        role_is_valid = true;
+        is_valid = true;
         break;
       }
     }
 
-    if (!role_is_valid) throw Error("Invalid role name: %s (at line %d)", input_entry.c_str(), line);
+    if (!is_valid) throw Error("Invalid role name: %s (at line %d)", ientry.c_str(), line);
   }
 }
 
 Role *RoleList::generate_role_from_role(int i)
 {
-  int faction_index = i;
-  while (data[faction_index]->type() != ListEntry::Type::FACTION) faction_index++;
+  Role *role = static_cast<Role *>(data[i]);
 
-  if (counts[faction_index] == data[faction_index]->limit) throw Error("Too many of faction: %s (at line %d)", data[faction_index]->name.c_str(), line);
+  if (counts[role->faction_pos] == data[role->faction_pos]->limit) throw Error("Too many of faction: %s (at line %d)", data[role->faction_pos]->name.c_str(), line);
+  counts[role->faction_pos]++;
 
-  counts[faction_index]++;
+  if (counts[role->alignment_pos] == data[role->alignment_pos]->limit) throw Error("Too many of alignment: %s (at line %d)", data[role->alignment_pos]->name.c_str(), line);
+  counts[role->alignment_pos]++;
 
-  int alignment_index = i;
-  while (data[alignment_index]->type() != ListEntry::Type::ALIGNMENT) alignment_index++;
+  if (counts[role->pos] == data[role->pos]->limit) throw Error("Too many of role: %s (at line %d)", data[role->pos]->name.c_str(), line);
+  counts[role->pos]++;
 
-  if (counts[alignment_index] == data[alignment_index]->limit) throw Error("Too many of alignment: %s (at line %d)", data[alignment_index]->name.c_str(), line);
-
-  counts[alignment_index]++;
-  counts[i]++;
-
-  return static_cast<Role *>(data[i]);
+  return role;
 }
 
 Role *RoleList::generate_role_from_alignment(int i)
 {
-  int faction_index = i;
-  while (data[faction_index]->type() != ListEntry::Type::FACTION) faction_index++;
-
-  if (counts[faction_index] == data[faction_index]->limit) throw Error("Too many of faction: %s (at line %d)", data[faction_index]->name.c_str(), line);
-
-  counts[faction_index]++;
-
   Alignment *alignment = static_cast<Alignment *>(data[i]);
-  int len = alignment->roles.size();
 
-  if (counts[i] == data[i]->limit) throw Error("Too many of alignment: %s (at line %d)", alignment->name.c_str(), line);
+  if (counts[alignment->faction_pos] == data[alignment->faction_pos]->limit) throw Error("Too many of faction: %s (at line %d)", data[alignment->faction_pos]->name.c_str(), line);
+  counts[alignment->faction_pos]++;
+
+  if (counts[alignment->pos] == data[alignment->pos]->limit) throw Error("Too many of alignment: %s (at line %d)", data[alignment->pos]->name.c_str(), line);
+  counts[alignment->pos]++;
 
   while (true)
   {
-    int index = i - len + std::rand() % len;
+    Role *role = alignment->roles[std::rand() % alignment->roles.size()];
 
-    if (counts[index] != data[index]->limit)
+    if (counts[role->pos] != data[role->pos]->limit)
     {
-      counts[index]++;
-      return static_cast<Role *>(data[index]);
+      counts[role->pos]++;
+      return static_cast<Role *>(data[role->pos]);
     }
   }
 }
@@ -123,33 +102,28 @@ Role *RoleList::generate_role_from_alignment(int i)
 Role *RoleList::generate_role_from_faction(int i)
 {
   Faction *faction = static_cast<Faction *>(data[i]);
-  std::vector<std::pair<int, Alignment *>> alignments;
 
-  if (counts[i] == data[i]->limit) throw Error("Too many of faction: %s (at line %d)", faction->name.c_str(), line);
-
-  int temp = 0;
-  for (auto entry : faction->alignments)
-  {
-    Alignment *alignment = entry;
-    temp += alignment->roles.size() + 1;
-
-    alignments.push_back(std::pair<int, Alignment *>(temp, alignment));
-  }
-
-  int onset = i - temp - 1;
-  int len = alignments.size();
+  if (counts[faction->pos] == data[faction->pos]->limit) throw Error("Too many of faction: %s (at line %d)", data[faction->pos]->name.c_str(), line);
+  counts[faction->pos]++;
 
   while (true)
   {
-    int index = std::rand() % len;
+    Alignment *alignment = faction->alignments[std::rand() % faction->alignments.size()];
 
-    int pos = onset + alignments[index].first;
-    if (counts[pos] != data[pos]->limit)
+    if (counts[alignment->pos] != data[alignment->pos]->limit)
     {
-      Role *role = generate_role_from_alignment(pos);
-      counts[pos]++;
+      counts[alignment->pos]++;
 
-      return role;
+      while (true)
+      {
+        Role *role = alignment->roles[std::rand() % alignment->roles.size()];
+
+        if (counts[role->pos] != data[role->pos]->limit)
+        {
+          counts[role->pos]++;
+          return static_cast<Role *>(data[role->pos]);
+        }
+      }
     }
   }
 }
@@ -157,19 +131,20 @@ Role *RoleList::generate_role_from_faction(int i)
 Role *RoleList::generate_role_from_group(int i)
 {
   Group *group = static_cast<Group *>(data[i]);
+
   while (true)
   {
-    int rand = std::rand() % group->roles.size();
+    Role *role = group->roles[std::rand() % group->roles.size()];
 
-    if (counts[group->roles[rand].faction_index] == data[group->roles[rand].faction_index]->limit) continue;
-    if (counts[group->roles[rand].alignment_index] == data[group->roles[rand].alignment_index]->limit) continue;
-    if (counts[group->roles[rand].role_index] == data[group->roles[rand].role_index]->limit) continue;
+    if (counts[role->faction_pos] == data[role->faction_pos]->limit) continue;
+    if (counts[role->alignment_pos] == data[role->alignment_pos]->limit) continue;
+    if (counts[role->pos] == data[role->pos]->limit) continue;
 
-    counts[group->roles[rand].faction_index]++;
-    counts[group->roles[rand].alignment_index]++;
-    counts[group->roles[rand].role_index]++;
+    counts[role->faction_pos]++;
+    counts[role->alignment_pos]++;
+    counts[role->pos]++;
 
-    return group->roles[rand].role;
+    return role;
   }
 }
 
@@ -234,134 +209,101 @@ void RoleList::shuffle(std::vector<std::string> scrolls)
 
 void RoleList::_shuffle(std::vector<std::string> scrolls)
 {
-  std::vector<std::tuple<Role *, Alignment *, Faction *>> roles;
-  for (int i = 0; i < data.size(); i++)
-  {
-    for (auto j : output)
-    {
-      if (data[i]->name == j.second->name)
-      {
-        Role *role = j.second;
-
-        int alignment_index = i;
-        while (data[alignment_index]->type() != ListEntry::Type::ALIGNMENT) alignment_index++;
-
-        Alignment *alignment = static_cast<Alignment *>(data[alignment_index]);
-
-        int faction_index = i;
-        while (data[faction_index]->type() != ListEntry::Type::FACTION) faction_index++;
-
-        Faction *faction = static_cast<Faction *>(data[faction_index]);
-
-        roles.push_back(std::tuple<Role *, Alignment *, Faction *>(role, alignment, faction));
-      }
-    }
-  }
-
-  std::map<int, std::vector<ListEntry *>> blessed_map;
-  std::map<int, std::vector<ListEntry *>> cursed_map;
+  std::map<int, std::vector<ListEntry *>> bmap;
+  std::map<int, std::vector<ListEntry *>> cmap;
 
   int i = 1;
-  for (auto entry : scrolls)
+  for (auto pscrolls : scrolls)
   {
-    std::vector<ListEntry *> blessed_scrolls;
-    std::vector<ListEntry *> cursed_scrolls;
+    std::vector<ListEntry *> bscrolls;
+    std::vector<ListEntry *> cscrolls;
     std::vector<std::string> strs;
 
-    std::stringstream stream(entry);
+    std::stringstream stream(pscrolls);
     std::string buf;
-    while (std::getline(stream, buf, ','))
-    {
-      strs.push_back(process_role_entry(buf));
-    }
+    while (std::getline(stream, buf, ',')) strs.push_back(process_role_entry(buf));
 
-    for (auto data_entry : data)
+    for (auto str : strs)
     {
-      for (auto str : strs)
+      for (auto e : data)
       {
-        if (std::find(data_entry->aliases.begin(), data_entry->aliases.end(), str) != data_entry->aliases.end())
+        if (std::find(e->aliases.begin(), e->aliases.end(), str) != e->aliases.end())
         {
-          blessed_scrolls.push_back(data_entry);
+          bscrolls.push_back(e);
+          break;
         }
 
         if (str[0] == '-')
         {
           std::string substr = str.substr(1);
 
-          if (std::find(data_entry->aliases.begin(), data_entry->aliases.end(), substr) != data_entry->aliases.end())
+          if (std::find(e->aliases.begin(), e->aliases.end(), substr) != e->aliases.end())
           {
-            cursed_scrolls.push_back(data_entry);
+            cscrolls.push_back(e);
+            break;
           }
         }
       }
     }
 
-    blessed_map[i] = blessed_scrolls;
-    cursed_map[i] = cursed_scrolls;
+    bmap[i] = bscrolls;
+    cmap[i] = cscrolls;
     i++;
   }
 
-  std::vector<int> rand_list;
-
-  for (int i = 1; i < roles.size() + 1; i++)
+  std::vector<int> shuffled;
+  for (int i = 0; i < output.size(); i++)
   {
-    rand_list.push_back(i);
+    shuffled.push_back(i + 1);
   }
-
-  std::shuffle(rand_list.begin(), rand_list.end(), std::default_random_engine(std::time(nullptr)));
+  std::shuffle(shuffled.begin(), shuffled.end(), std::default_random_engine(std::time(nullptr)));
 
   std::vector<std::pair<ListEntry *, Role *>> temp;
   temp.resize(output.size(), std::pair<ListEntry *, Role *>(nullptr, nullptr));
 
-  for (auto i : rand_list)
+  for (auto i : shuffled)
   {
     std::vector<Role *> choices;
 
-    for (auto role : roles)
+    for (auto role : output)
     {
       int count = 10;
 
-      auto blessed_vec = blessed_map[i];
+      auto bvec = bmap[i];
 
-      for (auto list_entry : blessed_vec)
+      for (auto e : bvec)
       {
-        if (std::get<0>(role)->name == list_entry->name) count += 90;
-        if (std::get<1>(role)->name == list_entry->name) count += 90;
-        if (std::get<2>(role)->name == list_entry->name) count += 90;
+        if (role.second->name == e->name) count += 90;
+        if (data[role.second->alignment_pos]->name == e->name) count += 90;
+        if (data[role.second->faction_pos]->name == e->name) count += 90;
       }
 
-      auto cursed_vec = cursed_map[i];
+      auto cvec = cmap[i];
 
-      for (auto list_entry : cursed_vec)
+      for (auto e : cvec)
       {
-        if (std::get<0>(role)->name == list_entry->name) count = 1;
-        break;
-        if (std::get<1>(role)->name == list_entry->name) count = 1;
-        break;
-        if (std::get<2>(role)->name == list_entry->name) count = 1;
-        break;
+        if (role.second->name == e->name) count = 1;
+        if (data[role.second->alignment_pos]->name == e->name) count = 1;
+        if (data[role.second->faction_pos]->name == e->name) count = 1;
       }
 
-      choices.resize(choices.size() + count, std::get<0>(role));
+      choices.resize(choices.size() + count, role.second);
     }
 
     Role *role = choices[std::rand() % choices.size()];
 
-    std::vector<std::tuple<Role *, Alignment *, Faction *>>::iterator it;
-    int to_rm = 0;
-    for (auto j = roles.begin(); j != roles.end(); j++)
+    auto it = output.begin();
+    for (auto j = output.begin(); j != output.end(); j++)
     {
-      if (std::get<0>(*j)->name == role->name)
+      if (j->second->name == role->name)
       {
         it = j;
-        to_rm = std::distance(roles.begin(), j);
-        temp[i - 1] = output[to_rm];
+        temp[i - 1] = *j;
         break;
       }
     }
 
-    output.erase(output.begin() + to_rm);
-    roles.erase(it);
+    output.erase(it);
   }
 
   output.clear();

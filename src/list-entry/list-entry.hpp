@@ -18,7 +18,9 @@ public:
   int limit;
   std::vector<std::string> aliases;
 
-  ListEntry(std::string name, int limit, std::vector<std::string> aliases);
+  const int pos;
+
+  ListEntry(int pos, std::string name, int limit, std::vector<std::string> aliases);
   virtual ~ListEntry() = 0;
 
   virtual Type type() = 0;

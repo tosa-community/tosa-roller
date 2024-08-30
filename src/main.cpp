@@ -101,6 +101,7 @@ int main(int argc, char **argv)
     }
 
     std::vector<ListEntry *> entries;
+    int pos = 0;
 
     for (auto faction : data["factions"])
     {
@@ -160,28 +161,36 @@ int main(int argc, char **argv)
 
           if (is_banned) continue;
 
-          Role *entry = new Role(role["name"], role["limit"], role["aliases"], role["color"]);
+          Role *entry = new Role(pos, role["name"], role["limit"], role["aliases"], role["color"]);
           entries.push_back(entry);
           alignment_roles.push_back(entry);
+
+          pos++;
         }
 
-        Alignment *alignment_entry = new Alignment(alignment["name"], alignment["limit"], alignment["aliases"], alignment_roles);
+        Alignment *alignment_entry = new Alignment(pos, alignment["name"], alignment["limit"], alignment["aliases"], alignment_roles);
         if (alignment_entry->roles.size() == 0) continue;
 
         entries.push_back(alignment_entry);
         faction_roles.push_back(alignment_entry);
+
+        pos++;
       }
 
-      Faction *faction_entry = new Faction(faction["name"], faction["limit"], faction["aliases"], faction_roles);
+      Faction *faction_entry = new Faction(pos, faction["name"], faction["limit"], faction["aliases"], faction_roles);
       if (faction_entry->alignments.size() == 0) continue;
 
       entries.push_back(faction_entry);
+
+      pos++;
     }
 
     for (auto group : data["groups"])
     {
-      Group *group_entry = new Group(group["name"], -1, group["aliases"], entries, group["factions"], group["alignments"], group["roles"]);
+      Group *group_entry = new Group(pos, group["name"], -1, group["aliases"], entries, group["factions"], group["alignments"], group["roles"]);
       entries.push_back(group_entry);
+
+      pos++;
     }
 
     RoleList list(list_query, entries);
