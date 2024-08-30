@@ -348,8 +348,8 @@
           "limit": -1,
           "aliases": ["neutral chaos", "neutralchaos", "nc"],
           "roles": [
-            { "name": "Vampire", "limit": 6, "aliases": ["vampire", "vamp"], "color": [162, 41, 41] },
-            { "name": "Cursed Soul", "limit": 1, "aliases": ["cursed soul", "cursedsoul", "cursed", "soul", "cs", "mostro"], "color": [117, 0, 175] },
+            { "name": "Vampire", "limit": 4, "aliases": ["vampire", "vamp"], "color": [162, 41, 41] },
+            { "name": "Cursed Soul", "limit": 4, "aliases": ["cursed soul", "cursedsoul", "cursed", "soul", "cs", "mostro"], "color": [117, 0, 175] },
             { "name": "Pirate", "limit": 1, "aliases": ["pirate"], "color": [236, 194, 62] },
             { "name": "Spectre", "limit": 1, "aliases": ["sorcerer", "sorc"], "color": [17, 167, 119] }
           ]
