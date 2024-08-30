@@ -42,7 +42,7 @@ make
 3. For every player, enter the scrolls they are using as a comma separated list. Prefix the roll with a `-` to enter as a cursed scroll. For example, to add a `Jailor` blessed scroll and a `Coroner` cursed scroll to a player (This stage is skipped when using the `-r` option):
 
 ```
-1. jailor,-coroner
+[1] - jailor,-coroner
 ```
 
 For more information on usage, see [Options](#options).

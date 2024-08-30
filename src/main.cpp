@@ -93,7 +93,7 @@ int main(int argc, char **argv)
       for (int i = 1; i < list_query.size() + 1; i++)
       {
         std::string buf;
-        std::cout << i << ": ";
+        std::cout << "[" << i << "] - ";
         std::getline(std::cin, buf);
 
         scrolls.push_back(buf);
