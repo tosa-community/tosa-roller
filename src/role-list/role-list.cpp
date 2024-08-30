@@ -89,7 +89,7 @@ Role *RoleList::generate_role_from_alignment(int i)
   Alignment *alignment = static_cast<Alignment *>(data[i]);
 
   if (counts[alignment->faction_pos] == data[alignment->faction_pos]->limit) throw Error(filename, line, "Too many of faction: %s", data[alignment->faction_pos]->name.c_str());
-  if (counts[alignment->pos] == data[alignment->pos]->limit) throw Error(filename, line, "Too many of alignment: %s (at line %d)", data[alignment->pos]->name.c_str());
+  if (counts[alignment->pos] == data[alignment->pos]->limit) throw Error(filename, line, "Too many of alignment: %s", data[alignment->pos]->name.c_str());
 
   counts[alignment->faction_pos]++;
   counts[alignment->pos]++;
