@@ -207,10 +207,10 @@ int main(int argc, char **argv)
 
                 target_data.push_back(target_info);
               }
-              entry = new Role(pos, name, role["limit"], role["aliases"], role["color"], target_data);
+              entry = new Role(pos, name, role["limit"], role["aliases"], role["wincon"], role["color"], target_data);
             }
             else
-              entry = new Role(pos, name, role["limit"], role["aliases"], role["color"]);
+              entry = new Role(pos, name, role["limit"], role["aliases"], role["wincon"], role["color"]);
             entries.push_back(entry);
             alignment_roles.push_back(entry);
 
