@@ -1,9 +1,10 @@
 #include "role-list.hpp"
 
-RoleList::RoleList(std::string filename, std::vector<std::string> input, std::vector<ListEntry *> data)
+RoleList::RoleList(std::string filename, std::vector<std::string> input, std::vector<ListEntry *> data, std::vector<Faction *> rq_factions)
 {
   this->filename = filename;
   this->data = data;
+  this->rq_factions = rq_factions;
 
   std::map<int, bool> wincons;
 
@@ -58,7 +59,7 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
 
 RoleList::~RoleList()
 {
-  for (auto entry : data) delete entry;
+  // for (auto entry : data) delete entry;
 }
 
 void RoleList::generate()
@@ -116,11 +117,52 @@ void RoleList::generate()
   targets.resize(output.size(), std::vector<int>());
 
   std::map<int, bool> wincons;
+  std::vector<int> rq_faction_counts;
+  rq_faction_counts.resize(rq_factions.size(), 0);
+
   for (auto role : output)
   {
     if (role.second->wincon != -1)
     {
       if (!wincons.contains(role.second->wincon)) wincons[role.second->wincon] = true;
+    }
+
+    auto it = std::find(rq_factions.begin(), rq_factions.end(), data[role.second->faction_pos]);
+    if (it != rq_factions.end()) rq_faction_counts[std::distance(rq_factions.begin(), it)]++;
+  }
+
+  for (int i = 0; i < rq_factions.size(); i++)
+  {
+    std::vector<int> faction_roles;
+    bool cont = false;
+    for (int j = 0; j < output.size(); j++)
+    {
+      if (rq_factions[i]->pos == output[j].second->faction_pos) faction_roles.push_back(j);
+      if (std::find(rq_factions[i]->require.begin(), rq_factions[i]->require.end(), output[j].second) != rq_factions[i]->require.end())
+      {
+        cont = true;
+        break;
+      }
+    }
+
+    if (cont) continue;
+
+    if (rq_faction_counts[i] < rq_factions[i]->require_min) continue;
+
+    int index = faction_roles[std::rand() % faction_roles.size()];
+
+    data[output[index].second->pos]--;
+    data[output[index].second->alignment_pos]--;
+    data[output[index].second->faction_pos]--;
+
+    switch (rq_factions[i]->fallback->type())
+    {
+    case ListEntry::Type::ROLE:
+      output[index].second = generate_role_from_role(rq_factions[i]->fallback->pos);
+      break;
+    case ListEntry::Type::ALIGNMENT:
+      output[index].second = generate_role_from_alignment(rq_factions[i]->fallback->pos);
+      break;
     }
   }
 
@@ -137,11 +179,11 @@ Role *RoleList::generate_role_from_role(int i)
 
   if (counts[role->faction_pos] == data[role->faction_pos]->limit) throw Error(filename, line, "Too many of faction: %s", data[role->faction_pos]->name.c_str());
   if (counts[role->alignment_pos] == data[role->alignment_pos]->limit) throw Error(filename, line, "Too many of alignment: %s", data[role->alignment_pos]->name.c_str());
-  if (counts[role->pos] == data[role->pos]->limit) throw Error(filename, line, "Too many of role: %s", data[role->pos]->name.c_str());
+  if (counts[i] == data[i]->limit) throw Error(filename, line, "Too many of role: %s", role->name.c_str());
 
   counts[role->faction_pos]++;
   counts[role->alignment_pos]++;
-  counts[role->pos]++;
+  counts[i]++;
 
   return role;
 }
@@ -151,10 +193,10 @@ Role *RoleList::generate_role_from_alignment(int i)
   Alignment *alignment = static_cast<Alignment *>(data[i]);
 
   if (counts[alignment->faction_pos] == data[alignment->faction_pos]->limit) throw Error(filename, line, "Too many of faction: %s", data[alignment->faction_pos]->name.c_str());
-  if (counts[alignment->pos] == data[alignment->pos]->limit) throw Error(filename, line, "Too many of alignment: %s", data[alignment->pos]->name.c_str());
+  if (counts[i] == data[i]->limit) throw Error(filename, line, "Too many of alignment: %s", alignment->name.c_str());
 
   counts[alignment->faction_pos]++;
-  counts[alignment->pos]++;
+  counts[i]++;
 
   while (true)
   {
@@ -172,8 +214,8 @@ Role *RoleList::generate_role_from_faction(int i)
 {
   Faction *faction = static_cast<Faction *>(data[i]);
 
-  if (counts[faction->pos] == data[faction->pos]->limit) throw Error(filename, line, "Too many of faction: %s", data[faction->pos]->name.c_str());
-  counts[faction->pos]++;
+  if (counts[i] == data[i]->limit) throw Error(filename, line, "Too many of faction: %s", faction->name.c_str());
+  counts[i]++;
 
   while (true)
   {

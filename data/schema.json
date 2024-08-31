@@ -26,6 +26,21 @@
               "type": "string"
             }
           },
+          "require": {
+            "description": "List of roles that are guaranteed a slot",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "require_min": {
+            "description": "Minimum amount of roles of the factions in the list for requirement to take effect",
+            "type": "integer"
+          },
+          "fallback": {
+            "description": "Entry to roll to meet requirement",
+            "type": "string"
+          },
           "alignments": {
             "description": "List of alignments in faction",
             "type": "array",

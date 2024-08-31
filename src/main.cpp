@@ -115,6 +115,7 @@ int main(int argc, char **argv)
     }
 
     std::vector<ListEntry *> entries;
+    std::vector<Faction *> rq_factions;
     int pos = 0;
 
     try
@@ -225,8 +226,15 @@ int main(int argc, char **argv)
 
           pos++;
         }
+        Faction *faction_entry;
 
-        Faction *faction_entry = new Faction(pos, faction["name"], faction["limit"], faction["aliases"], faction_roles);
+        if (faction.contains("require") && faction.contains("require_min") && faction.contains("fallback"))
+        {
+          faction_entry = new Faction(pos, faction["name"], faction["limit"], faction["aliases"], faction["require"], faction["require_min"], faction["fallback"], faction_roles);
+          if (faction_entry->alignments.size() != 0) rq_factions.push_back(faction_entry);
+        }
+        else
+          faction_entry = new Faction(pos, faction["name"], faction["limit"], faction["aliases"], faction_roles);
         if (faction_entry->alignments.size() == 0) continue;
 
         entries.push_back(faction_entry);
@@ -247,7 +255,7 @@ int main(int argc, char **argv)
       throw Error("Invalid data file");
     }
 
-    RoleList list(file, list_query, entries);
+    RoleList list(file, list_query, entries, rq_factions);
     list.generate();
 
     if (no_scroll) list.shuffle();
