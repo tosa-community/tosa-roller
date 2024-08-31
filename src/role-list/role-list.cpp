@@ -4,7 +4,54 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
 {
   this->filename = filename;
   this->data = data;
-  for (auto entry : input) this->query.push_back(process_role_entry(entry));
+
+  std::map<int, bool> wincons;
+
+  for (auto entry : input)
+  {
+    std::string q = process_role_entry(entry);
+    this->query.push_back(q);
+
+    for (int i = 0; i < this->data.size(); i++)
+    {
+      std::vector<std::string> aliases = data[i]->aliases;
+      if (std::find(aliases.begin(), aliases.end(), q) != aliases.end())
+      {
+        switch (data[i]->type())
+        {
+        case ListEntry::Type::ROLE:
+        {
+          Role *role = static_cast<Role *>(data[i]);
+          wincons[role->wincon] = true;
+          break;
+        }
+        case ListEntry::Type::ALIGNMENT:
+        {
+          Alignment *alignment = static_cast<Alignment *>(data[i]);
+          for (auto role : alignment->roles) wincons[role->wincon] = true;
+          break;
+        }
+        case ListEntry::Type::FACTION:
+        {
+          Faction *faction = static_cast<Faction *>(data[i]);
+          for (auto alignment : faction->alignments)
+          {
+            for (auto role : alignment->roles) wincons[role->wincon] = true;
+          }
+          break;
+        }
+        case ListEntry::Type::GROUP:
+        {
+          Group *group = static_cast<Group *>(data[i]);
+          for (auto role : group->roles) wincons[role->wincon] = true;
+          break;
+        }
+        }
+        break;
+      }
+    }
+  }
+  if (wincons.size() < 2) throw Error("Invalid rolelist");
 
   std::srand(std::time(nullptr));
 }
@@ -67,6 +114,21 @@ void RoleList::generate()
   }
 
   targets.resize(output.size(), std::vector<int>());
+
+  std::map<int, bool> wincons;
+  for (auto role : output)
+  {
+    if (role.second->wincon != -1)
+    {
+      if (!wincons.contains(role.second->wincon)) wincons[role.second->wincon] = true;
+    }
+  }
+
+  if (wincons.size() < 2)
+  {
+    output.clear();
+    generate();
+  }
 }
 
 Role *RoleList::generate_role_from_role(int i)
@@ -298,23 +360,74 @@ void RoleList::generate_targets()
       while (true)
       {
         int index = std::rand() % output.size();
-        Role *target_role = output[index].second;
 
         if (index == i) continue;
 
         if (std::find(targets[i].begin(), targets[i].end(), index) != targets[i].end()) continue;
 
-        if (std::find(target.exclude.begin(), target.exclude.end(), target_role->name) != target.exclude.end()) continue;
+        bool cont = false;
+        for (auto excl : target.exclude)
+        {
+          Role *target_role = output[index].second;
+          if (excl == target_role->name)
+          {
+            cont = true;
+            break;
+          }
 
-        ListEntry *target_alignment = data[target_role->alignment_pos];
+          ListEntry *target_alignment = data[target_role->alignment_pos];
+          if (excl == target_alignment->name)
+          {
+            cont = true;
+            break;
+          }
 
-        if (std::find(target.exclude.begin(), target.exclude.end(), target_alignment->name) != target.exclude.end()) continue;
+          ListEntry *target_faction = data[target_role->faction_pos];
+          if (excl == target_faction->name)
+          {
+            cont = true;
+            break;
+          }
 
-        ListEntry *target_faction = data[target_role->faction_pos];
+          auto it = std::find(excl.begin(), excl.end(), ':');
+          if (it != excl.end())
+          {
+            int num = std::stoi(excl.substr(0, std::distance(excl.begin(), it)));
+            std::string type = excl.substr(std::distance(excl.begin(), it) + 1);
 
-        if (std::find(target.exclude.begin(), target.exclude.end(), target_faction->name) != target.exclude.end()) continue;
+            if (num >= targets[i].size()) throw Error("Invalid data file");
 
-        targets[i].push_back(index + 1);
+            Role *cf = output[targets[i][num]].second;
+
+            if (type == "role" && cf == target_role)
+            {
+              cont = true;
+              break;
+            }
+
+            if (type == "alignment" && data[cf->alignment_pos] == target_alignment)
+            {
+              cont = true;
+              break;
+            }
+
+            if (type == "faction" && data[cf->faction_pos] == target_faction)
+            {
+              cont = true;
+              break;
+            }
+
+            if (type == "wincon" && cf->wincon == target_role->wincon)
+            {
+              cont = true;
+              break;
+            }
+          }
+        }
+
+        if (cont) continue;
+
+        targets[i].push_back(index);
         break;
       }
     }
@@ -340,7 +453,7 @@ std::string RoleList::to_string(bool verbose, bool color)
       {
         res.append(target_data[j].name);
         res.append(": ");
-        res.append(std::to_string(targets[i][j]));
+        res.append(std::to_string(targets[i][j] + 1));
         if (j + 1 != targets[i].size()) res.append(", ");
       }
       res.append("]");

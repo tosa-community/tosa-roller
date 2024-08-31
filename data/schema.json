@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/salademalade/tosa-roller/main/data/schema.json",
+  "title": "tosa-roller Data File",
+  "description": "tosa-roller data file schema",
+  "type": "object",
+  "properties": {
+    "factions": {
+      "description": "List of factions",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of faction",
+            "type": "string"
+          },
+          "limit": {
+            "description": "Maximum allowed occurence of faction in rolelist",
+            "type": "integer"
+          },
+          "aliases": {
+            "description": "List of possible aliases for faction",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "alignments": {
+            "description": "List of alignments in faction",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "Name of alignment",
+                  "type": "string"
+                },
+                "limit": {
+                  "description": "Maximum allowed occurence of alignment in rolelist",
+                  "type": "integer"
+                },
+                "aliases": {
+                  "description": "List of possible aliases for alignment",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "roles": {
+                  "description": "List of roles in alignment",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "description": "Name of role",
+                        "type": "string"
+                      },
+                      "ascii_name": {
+                        "description": "Alternative name of role for ASCII platforms",
+                        "type": "string"
+                      },
+                      "limit": {
+                        "description": "Maximum allowed occurence of role in rolelist",
+                        "type": "integer"
+                      },
+                      "aliases": {
+                        "description": "List of possible aliases for role",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "wincon": {
+                        "description": "ID of win condition for role",
+                        "type": "integer"
+                      },
+                      "color": {
+                        "description": "RGB value of role color",
+                        "type": "array",
+                        "prefixItems": [
+                          { "type": "integer" },
+                          { "type": "integer" },
+                          { "type": "integer" }
+                        ]
+                      },
+                      "targets": {
+                        "description": "List of role target data",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "description": "Target name",
+                              "type": "string"
+                            },
+                            "exclude": {
+                              "description": "List of entries to exclude from being rolled as a target",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [ "name", "exclude" ]
+                        }
+                      }
+                    },
+                    "required": [ "name", "limit", "aliases", "wincon", "color" ]
+                  }
+                }
+              },
+              "required": [ "name", "limit", "aliases", "roles" ]
+            }
+          }
+        },
+        "required": [ "name", "limit", "aliases", "alignments" ]
+      }
+    },
+    "groups": {
+      "description": "List of role groups",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of role group",
+            "type": "string"
+          },
+          "aliases": {
+            "description": "List of possible aliases for group",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "factions": {
+            "description": "List of factions in group",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "alignments": {
+            "description": "List of alignments in group",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "roles": {
+            "description": "List of roles group",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [ "name", "aliases", "factions", "alignments", "roles" ]
+      }
+    }
+  },
+  "required": [ "factions", "groups" ]
+}
