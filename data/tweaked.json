@@ -7,7 +7,7 @@
       "alignments": [
         {
           "name": "Town Power",
-          "limit": 3,
+          "limit": 2,
           "aliases": ["town power", "townpower", "tpow"],
           "roles": [
             { "name": "Jailor", "limit": 1, "aliases": ["jailor"], "color": [6, 224, 12] },
@@ -394,6 +394,13 @@
       "aliases": ["common town", "commontown", "ct"],
       "factions": [],
       "alignments": ["Town Killing", "Town Support", "Town Investigative", "Town Protective"],
+      "roles": []
+    },
+    {
+      "name": "Common Coven",
+      "aliases": ["common coven", "commoncoven", "cc"],
+      "factions": [],
+      "alignments": ["Coven Support", "Coven Deception"],
       "roles": []
     }
   ]
