@@ -439,6 +439,12 @@ void RoleList::generate_targets()
               cont = true;
               break;
             }
+
+            if (type == "wincon" && cf->wincon == target_role->wincon)
+            {
+              cont = true;
+              break;
+            }
           }
         }
 
