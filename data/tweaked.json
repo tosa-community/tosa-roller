@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/salademalade/tosa-roller/main/data/schema.json",
   "factions": [
     {
       "name": "Town",
@@ -212,7 +213,7 @@
               "targets": [
                 {
                   "name": "Quarry",
-                  "exclude": ["Spirits", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
+                  "exclude": ["Spirits", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 }
               ]
             },
@@ -330,27 +331,28 @@
           "limit": -1,
           "aliases": ["neutral evil", "neutralevil", "ne"],
           "roles": [
-            { "name": "Jester", "limit": 6, "aliases": ["jester", "jest"], "color": [245, 166, 212] },
-            { "name": "Executioner", "limit": 6, "aliases": ["executioner", "exe"], "color": [148, 151, 151] },
-            { "name": "Doomsayer", "limit": 6, "aliases": ["doomsayer", "doom", "sayer", "ds"], "color": [0, 204, 153] },
-            { "name": "Diablo", "limit": 1, "aliases": ["diablo", "diab"], "color": [225, 95, 80] },
+            { "name": "Jester", "limit": 6, "aliases": ["jester", "jest"], "wincon": -1, "color": [245, 166, 212] },
+            { "name": "Executioner", "limit": 6, "aliases": ["executioner", "exe"], "wincon": -1, "color": [148, 151, 151] },
+            { "name": "Doomsayer", "limit": 6, "aliases": ["doomsayer", "doom", "sayer", "ds"], "wincon": -1, "color": [0, 204, 153] },
+            { "name": "Diablo", "limit": 1, "aliases": ["diablo", "diab"], "wincon": -1, "color": [225, 95, 80] },
             {
               "name": "Inquisitor",
               "limit": 1,
               "aliases": ["inquisitor"],
+              "wincon": -1,
               "color": [160, 22, 101],
               "targets": [
                 {
                   "name": "Heretic",
-                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Transporter"]
+                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 },
                 {
                   "name": "Heretic",
-                  "exclude": ["0:wincon", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Transporter"]
+                  "exclude": ["0:wincon", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 },
                 {
                   "name": "Heretic",
-                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Transporter"]
+                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 }
               ]
             }
@@ -372,13 +374,14 @@
           "limit": -1,
           "aliases": ["neutral chaos", "neutralchaos", "nc"],
           "roles": [
-            { "name": "Vampire", "limit": 4, "aliases": ["vampire", "vamp"], "color": [162, 41, 41] },
-            { "name": "Cursed Soul", "limit": 6, "aliases": ["cursed soul", "cursedsoul", "cursed", "soul", "cs", "mostro"], "color": [117, 0, 175] },
-            { "name": "Pirate", "limit": 1, "aliases": ["pirate"], "color": [236, 194, 62] },
-            { "name": "Spectre", "limit": 1, "aliases": ["sorcerer", "sorc"], "color": [17, 167, 119] },
+            { "name": "Vampire", "limit": 4, "aliases": ["vampire", "vamp"], "wincon": -1, "color": [162, 41, 41] },
+            { "name": "Cursed Soul", "limit": 6, "aliases": ["cursed soul", "cursedsoul", "cursed", "soul", "cs", "mostro"], "wincon": -1, "color": [117, 0, 175] },
+            { "name": "Pirate", "limit": 1, "aliases": ["pirate"], "wincon": -1, "color": [236, 194, 62] },
+            { "name": "Spectre", "limit": 1, "aliases": ["sorcerer", "sorc"], "wincon": -1, "color": [17, 167, 119] },
             {
               "name": "Jackal", "limit": 1,
               "aliases": ["jackal"],
+              "wincon": -1,
               "color": [102, 102, 102],
               "targets": [
                 {
