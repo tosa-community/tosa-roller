@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/salademalade/tosa-roller/main/data/schema.json",
   "factions": [
     {
       "name": "Town",
