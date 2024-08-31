@@ -25,6 +25,8 @@ class RoleList
   std::vector<ListEntry *> data;
   std::vector<int> counts;
 
+  std::vector<Faction *> rq_factions;
+
   std::vector<std::pair<ListEntry *, Role *>> output;
   std::vector<std::vector<int>> targets;
 
@@ -38,7 +40,7 @@ class RoleList
 
   void _shuffle(std::vector<std::string> scrolls);
 public:
-  RoleList(std::string filename, std::vector<std::string> input, std::vector<ListEntry *> data);
+  RoleList(std::string filename, std::vector<std::string> input, std::vector<ListEntry *> data, std::vector<Faction *> rq_factions);
   ~RoleList();
 
   void generate();

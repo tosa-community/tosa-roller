@@ -186,6 +186,9 @@
       "name": "Spirits",
       "limit": 4,
       "aliases": ["random spirits", "randomspirits", "rs", "random spirit", "randomspirit"],
+      "require": ["Spirits Killing"],
+      "require_min": 2,
+      "fallback": "Spirits Killing",
       "alignments": [
         {
           "name": "Spirits Power",
