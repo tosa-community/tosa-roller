@@ -106,7 +106,7 @@
           ]
         },
         {
-          "name": "Coven Support",
+          "name": "Coven Utility",
           "limit": -1,
           "aliases": ["coven support", "covensupport", "covs", "coven utility", "covenutility", "covu", "cu"],
           "roles": [
@@ -157,7 +157,7 @@
           ]
         },
         {
-          "name": "Corporate Support",
+          "name": "Corporate Utility",
           "limit": -1,
           "aliases": ["corporate support", "corporatesupport", "cors", "corporate utility", "corporateutility", "coru"],
           "roles": [
@@ -219,7 +219,7 @@
           ]
         },
         {
-          "name": "Spirits Support",
+          "name": "Spirits Utility",
           "limit": -1,
           "aliases": ["spirits support", "spiritssupport", "ss", "spirit support", "spiritsupport", "spirits utility", "spiritsutility", "su", "spirit utility", "spiritutility"],
           "roles": [
@@ -261,7 +261,7 @@
           ]
         },
         {
-          "name": "Elementals Support",
+          "name": "Elementals Utility",
           "limit": -1,
           "aliases": ["elementals support", "elementalssupport", "es", "elemental support", "elementalsupport", "elementals utility", "elementalsutility", "eu", "elemental utility", "elementalutility"],
           "roles": [
@@ -400,7 +400,28 @@
       "name": "Common Coven",
       "aliases": ["common coven", "commoncoven", "cc"],
       "factions": [],
-      "alignments": ["Coven Support", "Coven Deception"],
+      "alignments": ["Coven Utility", "Coven Deception"],
+      "roles": []
+    },
+    {
+      "name": "Common Corporate",
+      "aliases": ["common corporate", "commoncorporate", "ccorp"],
+      "factions": [],
+      "alignments": ["Corporate Utility", "Corporate Influence"],
+      "roles": []
+    },
+    {
+      "name": "Common Spirits",
+      "aliases": ["common spirits", "commonspirits", "csp"],
+      "factions": [],
+      "alignments": ["Spirits Killing", "Spirits Utility"],
+      "roles": []
+    },
+    {
+      "name": "Common Elementals",
+      "aliases": ["common elementals", "commonelementals", "ce"],
+      "factions": [],
+      "alignments": ["Elementals Utility", "Elementals Disruption"],
       "roles": []
     }
   ]
