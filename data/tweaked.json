@@ -7,7 +7,7 @@
       "alignments": [
         {
           "name": "Town Power",
-          "limit": 3,
+          "limit": 2,
           "aliases": ["town power", "townpower", "tpow"],
           "roles": [
             { "name": "Jailor", "limit": 1, "aliases": ["jailor"], "color": [6, 224, 12] },
@@ -106,7 +106,7 @@
           ]
         },
         {
-          "name": "Coven Support",
+          "name": "Coven Utility",
           "limit": -1,
           "aliases": ["coven support", "covensupport", "covs", "coven utility", "covenutility", "covu", "cu"],
           "roles": [
@@ -157,7 +157,7 @@
           ]
         },
         {
-          "name": "Corporate Support",
+          "name": "Corporate Utility",
           "limit": -1,
           "aliases": ["corporate support", "corporatesupport", "cors", "corporate utility", "corporateutility", "coru"],
           "roles": [
@@ -219,7 +219,7 @@
           ]
         },
         {
-          "name": "Spirits Support",
+          "name": "Spirits Utility",
           "limit": -1,
           "aliases": ["spirits support", "spiritssupport", "ss", "spirit support", "spiritsupport", "spirits utility", "spiritsutility", "su", "spirit utility", "spiritutility"],
           "roles": [
@@ -261,7 +261,7 @@
           ]
         },
         {
-          "name": "Elementals Support",
+          "name": "Elementals Utility",
           "limit": -1,
           "aliases": ["elementals support", "elementalssupport", "es", "elemental support", "elementalsupport", "elementals utility", "elementalsutility", "eu", "elemental utility", "elementalutility"],
           "roles": [
@@ -332,7 +332,26 @@
             { "name": "Executioner", "limit": 6, "aliases": ["executioner", "exe"], "color": [148, 151, 151] },
             { "name": "Doomsayer", "limit": 6, "aliases": ["doomsayer", "doom", "sayer", "ds"], "color": [0, 204, 153] },
             { "name": "Diablo", "limit": 1, "aliases": ["diablo", "diab"], "color": [225, 95, 80] },
-            { "name": "Inquisitor", "limit": 1, "aliases": ["inquisitor"], "color": [160, 22, 101] }
+            { 
+              "name": "Inquisitor", 
+              "limit": 1, 
+              "aliases": ["inquisitor"], 
+              "color": [160, 22, 101],
+              "targets": [
+                {
+                  "name": "Heretics",
+                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Transporter"]
+                },
+                {
+                  "name": "Heretics2",
+                  "exclude": ["Heretics", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Transporter"]
+                },
+                {
+                  "name": "Heretics3",
+                  "exclude": ["Heretics", "Heretics2", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Transporter"]
+                }
+              ]
+            }
           ]
         },
         {
@@ -355,7 +374,21 @@
             { "name": "Cursed Soul", "limit": 6, "aliases": ["cursed soul", "cursedsoul", "cursed", "soul", "cs", "mostro"], "color": [117, 0, 175] },
             { "name": "Pirate", "limit": 1, "aliases": ["pirate"], "color": [236, 194, 62] },
             { "name": "Spectre", "limit": 1, "aliases": ["sorcerer", "sorc"], "color": [17, 167, 119] },
-            { "name": "Jackal", "limit": 1, "aliases": ["jackal"], "color": [102, 102, 102] },
+            { 
+              "name": "Jackal", "limit": 1, 
+              "aliases": ["jackal"], 
+              "color": [102, 102, 102],
+              "targets": [
+                {
+                  "name": "Recruits",
+                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Neutral Chaos", "Neutral Apocalypse", "Bodyguard", "Bouncer", "Casanova", "Daemon"]
+                },
+                {
+                  "name": "Recruits2",
+                  "exclude": ["Recruits", "Recruits", "Neutral Evil", "Neutral Vindictive", "Neutral Chaos", "Neutral Apocalypse", "Bodyguard", "Bouncer", "Casanova", "Daemon"]
+                }
+              ]
+            },
             {
               "name": "Guardian Angel",
               "limit": 6,
@@ -364,7 +397,7 @@
               "targets": [
                 {
                   "name": "Liege",
-                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter", "Neutral Apocalypse"]
+                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Neutral Apocalypse", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 }
               ]
             },
@@ -394,6 +427,34 @@
       "aliases": ["common town", "commontown", "ct"],
       "factions": [],
       "alignments": ["Town Killing", "Town Support", "Town Investigative", "Town Protective"],
+      "roles": []
+    },
+    {
+      "name": "Common Coven",
+      "aliases": ["common coven", "commoncoven", "cc"],
+      "factions": [],
+      "alignments": ["Coven Utility", "Coven Deception"],
+      "roles": []
+    },
+    {
+      "name": "Common Corporate",
+      "aliases": ["common corporate", "commoncorporate", "ccorp"],
+      "factions": [],
+      "alignments": ["Corporate Utility", "Corporate Influence"],
+      "roles": []
+    },
+    {
+      "name": "Common Spirits",
+      "aliases": ["common spirits", "commonspirits", "csp"],
+      "factions": [],
+      "alignments": ["Spirits Killing", "Spirits Utility"],
+      "roles": []
+    },
+    {
+      "name": "Common Elementals",
+      "aliases": ["common elementals", "commonelementals", "ce"],
+      "factions": [],
+      "alignments": ["Elementals Utility", "Elementals Disruption"],
       "roles": []
     }
   ]
