@@ -211,7 +211,7 @@
               "targets": [
                 {
                   "name": "Quarry",
-                  "exclude": ["Spirits", "Neutral Evil", "Neutral Vindictive"]
+                  "exclude": ["Spirits", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 }
               ]
             },
@@ -317,7 +317,7 @@
               "targets": [
                 {
                   "name": "Obsession",
-                  "exclude": ["Neutral Evil", "Neutral Vindictive"]
+                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 }
               ]
             }
@@ -340,15 +340,15 @@
               "targets": [
                 {
                   "name": "Heretics",
-                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Transporter"]
+                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 },
                 {
                   "name": "Heretics2",
-                  "exclude": ["Heretics", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Transporter"]
+                  "exclude": ["Heretics", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 },
                 {
                   "name": "Heretics3",
-                  "exclude": ["Heretics", "Heretics2", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Transporter"]
+                  "exclude": ["Heretics", "Heretics2", "Neutral Evil", "Neutral Vindictive", "Bodyguard", "Bouncer", "Casanova", "Daemon", "Cursed Soul", "Pirate", "Spectre", "Guardian Angel", "Transporter"]
                 }
               ]
             }
