@@ -381,11 +381,11 @@
               "targets": [
                 {
                   "name": "Recruits",
-                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Neutral Chaos", "Neutral Apocalypse", "Bodyguard", "Bouncer", "Casanova", "Daemon"]
+                  "exclude": ["Neutral Evil", "Neutral Vindictive", "Neutral Chaos", "Bodyguard", "Bouncer", "Casanova", "Daemon"]
                 },
                 {
                   "name": "Recruits2",
-                  "exclude": ["Recruits", "Recruits", "Neutral Evil", "Neutral Vindictive", "Neutral Chaos", "Neutral Apocalypse", "Bodyguard", "Bouncer", "Casanova", "Daemon"]
+                  "exclude": ["Recruits", "Neutral Evil", "Neutral Vindictive", "Neutral Chaos", "Bodyguard", "Bouncer", "Casanova", "Daemon"]
                 }
               ]
             },
