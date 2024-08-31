@@ -59,7 +59,7 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
 
 RoleList::~RoleList()
 {
-  // for (auto entry : data) delete entry;
+  for (auto entry : data) delete entry;
 }
 
 void RoleList::generate()
@@ -151,9 +151,9 @@ void RoleList::generate()
 
     int index = faction_roles[std::rand() % faction_roles.size()];
 
-    data[output[index].second->pos]--;
-    data[output[index].second->alignment_pos]--;
-    data[output[index].second->faction_pos]--;
+    counts[output[index].second->pos]--;
+    counts[output[index].second->alignment_pos]--;
+    counts[output[index].second->faction_pos]--;
 
     switch (rq_factions[i]->fallback->type())
     {
