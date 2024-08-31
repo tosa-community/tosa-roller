@@ -374,14 +374,14 @@
           "limit": -1,
           "aliases": ["neutral chaos", "neutralchaos", "nc"],
           "roles": [
-            { "name": "Vampire", "limit": 4, "aliases": ["vampire", "vamp"], "wincon": -1, "color": [162, 41, 41] },
-            { "name": "Cursed Soul", "limit": 6, "aliases": ["cursed soul", "cursedsoul", "cursed", "soul", "cs", "mostro"], "wincon": -1, "color": [117, 0, 175] },
+            { "name": "Vampire", "limit": 4, "aliases": ["vampire", "vamp"], "wincon": 12, "color": [162, 41, 41] },
+            { "name": "Cursed Soul", "limit": 6, "aliases": ["cursed soul", "cursedsoul", "cursed", "soul", "cs", "mostro"], "wincon": 13, "color": [117, 0, 175] },
             { "name": "Pirate", "limit": 1, "aliases": ["pirate"], "wincon": -1, "color": [236, 194, 62] },
-            { "name": "Spectre", "limit": 1, "aliases": ["sorcerer", "sorc"], "wincon": -1, "color": [17, 167, 119] },
+            { "name": "Spectre", "limit": 1, "aliases": ["spectre"], "wincon": -1, "color": [17, 167, 119] },
             {
               "name": "Jackal", "limit": 1,
               "aliases": ["jackal"],
-              "wincon": -1,
+              "wincon": 14,
               "color": [102, 102, 102],
               "targets": [
                 {
