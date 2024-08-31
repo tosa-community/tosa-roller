@@ -5,32 +5,30 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
   this->filename = filename;
   this->data = data;
 
-  std::map<int, int> wincons;
+  std::map<int, bool> wincons;
 
   for (auto entry : input)
   {
-    this->query.push_back(process_role_entry(entry));
+    std::string q = process_role_entry(entry);
+    this->query.push_back(q);
 
-    for (int i = 0; i < data.size(); i++)
+    for (int i = 0; i < this->data.size(); i++)
     {
       std::vector<std::string> aliases = data[i]->aliases;
-      if (std::find(aliases.begin(), aliases.end(), entry) != aliases.end())
+      if (std::find(aliases.begin(), aliases.end(), q) != aliases.end())
       {
         switch (data[i]->type())
         {
         case ListEntry::Type::ROLE:
         {
           Role *role = static_cast<Role *>(data[i]);
-          if (!wincons.contains(role->wincon)) wincons[role->wincon] = true;
+          wincons[role->wincon] = true;
           break;
         }
         case ListEntry::Type::ALIGNMENT:
         {
           Alignment *alignment = static_cast<Alignment *>(data[i]);
-          for (auto role : alignment->roles)
-          {
-            if (!wincons.contains(role->wincon)) wincons[role->wincon] = true;
-          }
+          for (auto role : alignment->roles) wincons[role->wincon] = true;
           break;
         }
         case ListEntry::Type::FACTION:
@@ -38,45 +36,24 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
           Faction *faction = static_cast<Faction *>(data[i]);
           for (auto alignment : faction->alignments)
           {
-            for (auto role : alignment->roles)
-            {
-              if (!wincons.contains(role->wincon)) wincons[role->wincon] = true;
-            }
+            for (auto role : alignment->roles) wincons[role->wincon] = true;
           }
           break;
         }
         case ListEntry::Type::GROUP:
         {
           Group *group = static_cast<Group *>(data[i]);
-          for (auto role : group->roles)
-          {
-            if (!wincons.contains(role->wincon)) wincons[role->wincon] = true;
-          }
+          for (auto role : group->roles) wincons[role->wincon] = true;
           break;
         }
         }
         break;
       }
     }
-
-    if (wincons.size() < 2) throw Error("Invalid rolelist");
   }
+  if (wincons.size() < 2) throw Error("Invalid rolelist");
 
   std::srand(std::time(nullptr));
-
-  for (auto entry : data)
-  {
-    if (entry->type () != ListEntry::Type::ROLE) continue;
-
-    Role *role = static_cast<Role *>(entry);
-    if (role->wincon != -1)
-    {
-      if (wincons.contains(role->wincon)) wincons[role->wincon]++;
-      else wincons[role->wincon] = 0;
-    }
-
-    if (wincons.size() < 2) throw Error("Invalid rolelist");
-  }
 }
 
 RoleList::~RoleList()
