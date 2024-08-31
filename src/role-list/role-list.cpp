@@ -67,6 +67,22 @@ void RoleList::generate()
   }
 
   targets.resize(output.size(), std::vector<int>());
+
+  std::map<int, int> unique_wincons;
+  for (auto role : output)
+  {
+    if (role.second->wincon != -1)
+    {
+      if (unique_wincons.contains(role.second->wincon)) unique_wincons[role.second->wincon]++;
+      else unique_wincons[role.second->wincon] = 0;
+    }
+  }
+
+  if (unique_wincons.size() < 2)
+  {
+    output.clear();
+    generate();
+  }
 }
 
 Role *RoleList::generate_role_from_role(int i)

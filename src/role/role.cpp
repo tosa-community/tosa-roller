@@ -1,14 +1,18 @@
 #include "role.hpp"
 
-Role::Role(int pos, std::string name, int limit, std::vector<std::string> aliases, std::vector<int> color) : ListEntry(pos, name, limit, aliases)
+Role::Role(int pos, std::string name, int limit, std::vector<std::string> aliases, int wincon, std::vector<int> color) : ListEntry(pos, name, limit, aliases)
 {
+  this->wincon = wincon;
+
   this->r = color[0];
   this->g = color[1];
   this->b = color[2];
 }
 
-Role::Role(int pos, std::string name, int limit, std::vector<std::string> aliases, std::vector<int> color, std::vector<TargetData> target_data) : ListEntry(pos, name, limit, aliases)
+Role::Role(int pos, std::string name, int limit, std::vector<std::string> aliases, int wincon, std::vector<int> color, std::vector<TargetData> target_data) : ListEntry(pos, name, limit, aliases)
 {
+  this->wincon = wincon;
+
   this->r = color[0];
   this->g = color[1];
   this->b = color[2];
