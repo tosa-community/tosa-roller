@@ -214,7 +214,7 @@
                 }
               ]
             },
-            { "name": "Onryō", "limit": 1, "aliases": ["onryō", "onryo"], "color": [200, 200, 200] }
+            { "name": "Onryō", "ascii_name": "Onryo", "limit": 1, "aliases": ["onryō", "onryo"], "color": [200, 200, 200] }
           ]
         },
         {
