@@ -345,8 +345,8 @@
           "limit": -1,
           "aliases": ["neutral vindictive", "neutralvindictive", "nv", "neutral pariah", "neutralpariah", "np"],
           "roles": [
-            { "name": "Conversus", "limit": 6, "aliases": ["conversus", "convers", "conv"], "wincon": -1, "color": [153, 128, 240] },
-            { "name": "Sorcerer", "limit": 1, "aliases": ["sorcerer", "sorc"], "wincon": -1, "color": [3, 186, 186] }
+            { "name": "Conversus", "limit": 6, "aliases": ["conversus", "convers", "conv"], "wincon": -1, "oppose": 0, "color": [153, 128, 240] },
+            { "name": "Sorcerer", "limit": 1, "aliases": ["sorcerer", "sorc"], "wincon": -1, "oppose": 0, "color": [3, 186, 186] }
           ]
         }
       ]

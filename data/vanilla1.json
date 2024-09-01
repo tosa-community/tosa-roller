@@ -14,7 +14,7 @@
             { "name": "Jailor", "limit": 1, "aliases": ["jailor"], "wincon": 0, "color": [127, 255, 0] },
             { "name": "Vigilante", "limit": 6, "aliases": ["vigilante", "vigi", "vig"], "wincon": 0, "color": [127, 255, 0] },
             { "name": "Veteran", "limit": 1, "aliases": ["veteran", "vet"], "wincon": 0, "color": [127, 255, 0] },
-            { "name": "Vampire Hunter", "limit": 6, "aliases": ["vampire hunter", "vampirehunter", "vh"], "wincon": 0, "color": [127, 255, 0] }
+            { "name": "Vampire Hunter", "limit": 6, "aliases": ["vampire hunter", "vampirehunter", "vh"], "wincon": 0, "oppose": 5, "color": [127, 255, 0] }
           ]
         },
         {
@@ -113,7 +113,7 @@
                 { "name": "Target", "exclude": ["Mafia", "Neutrals", "Jailor", "Mayor"] }
               ]
             },
-            { "name": "Witch", "limit": 6, "aliases": ["witch"], "wincon": -1, "color": [191, 95, 255] }
+            { "name": "Witch", "limit": 6, "aliases": ["witch"], "wincon": -1, "oppose": 0, "color": [191, 95, 255] }
           ]
         },
         {
