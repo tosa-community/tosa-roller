@@ -1,0 +1,193 @@
+{
+  "$schema": "https://raw.githubusercontent.com/salademalade/tosa-roller/main/data/schema.json",
+  "factions": [
+    {
+      "name": "Town",
+      "limit": -1,
+      "aliases": ["random town", "randomtown", "rt"],
+      "alignments": [
+        {
+          "name": "Town Killing",
+          "limit": -1,
+          "aliases": ["town killing", "townkilling", "tk"],
+          "roles": [
+            { "name": "Jailor", "limit": 1, "aliases": ["jailor"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Vigilante", "limit": 6, "aliases": ["vigilante", "vigi", "vig"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Veteran", "limit": 1, "aliases": ["veteran", "vet"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Vampire Hunter", "limit": 6, "aliases": ["vampire hunter", "vampirehunter", "vh"], "wincon": 0, "oppose": 5, "color": [127, 255, 0] }
+          ]
+        },
+        {
+          "name": "Town Support",
+          "limit": -1,
+          "aliases": ["town support", "townsupport", "ts"],
+          "roles": [
+            { "name": "Escort", "limit": 6, "aliases": ["escort", "esc"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Transporter", "limit": 6, "aliases": ["transporter", "trans"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Medium", "limit": 6, "aliases": ["medium", "med"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Retributionist", "limit": 1, "aliases": ["retributionist", "retri", "ret"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Mayor", "limit": 1, "aliases": ["mayor"], "wincon": 0, "color": [127, 255, 0] }
+          ]
+        },
+        {
+          "name": "Town Investigative",
+          "limit": -1,
+          "aliases": ["town investigative", "towninvestigative", "ti"],
+          "roles": [
+            { "name": "Sheriff", "limit": 6, "aliases": ["sheriff", "sher"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Investigator", "limit": 6, "aliases": ["investigator", "invest"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Spy", "limit": 6, "aliases": ["spy"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Lookout", "limit": 6, "aliases": ["lookout", "look", "lo"], "wincon": 0, "color": [127, 255, 0] }
+          ]
+        },
+        {
+          "name": "Town Protective",
+          "limit": -1,
+          "aliases": ["town protective", "townprotective", "tprot", "tpro", "tpr", "tp"],
+          "roles": [
+            { "name": "Doctor", "limit": 6, "aliases": ["doctor", "doc"], "wincon": 0, "color": [127, 255, 0] },
+            { "name": "Bodyguard", "limit": 6, "aliases": ["bodyguard", "bg"], "wincon": 0, "color": [127, 255, 0] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mafia",
+      "limit": 4,
+      "aliases": ["random mafia", "randommafia", "rm"],
+      "require": ["Godfather", "Mafioso"],
+      "require_min": 1,
+      "fallback": "Mafioso",
+      "alignments": [
+        {
+          "name": "Mafia Killing",
+          "limit": -1,
+          "aliases": ["mafia killing", "mafiakilling", "mk"],
+          "roles": [
+            { "name": "Godfather", "limit": 1, "aliases": ["godfather", "gf"], "wincon": 1, "color": [221, 0, 0] },
+            { "name": "Mafioso", "limit": 1, "aliases": ["mafioso", "maf"], "wincon": 1, "color": [221, 0, 0] },
+            { "name": "Ambusher", "limit": 1, "aliases": ["ambusher", "ambush"], "wincon": 1, "color": [221, 0, 0] }
+          ]
+        },
+        {
+          "name": "Mafia Support",
+          "limit": -1,
+          "aliases": ["mafia support", "mafiasupport", "ms"],
+          "roles": [
+            { "name": "Consort", "limit": 6, "aliases": ["consort"], "wincon": 1, "color": [221, 0, 0] },
+            { "name": "Consigliere", "limit": 6, "aliases": ["consigliere", "consig"], "wincon": 1, "color": [221, 0, 0] },
+            { "name": "Blackmailer", "limit": 6, "aliases": ["blackmailer", "bmer", "bm"], "wincon": 1, "color": [221, 0, 0] }
+          ]
+        },
+        {
+          "name": "Mafia Deception",
+          "limit": -1,
+          "aliases": ["mafia deception", "mafiadeception", "md"],
+          "roles": [
+            { "name": "Framer", "limit": 6, "aliases": ["framer", "frame"], "wincon": 1, "color": [221, 0, 0] },
+            { "name": "Disguiser", "limit": 6, "aliases": ["disguiser", "disguise", "disg"], "wincon": 1, "color": [221, 0, 0] },
+            { "name": "Janitor", "limit": 6, "aliases": ["janitor", "jani"], "wincon": 1, "color": [221, 0, 0] },
+            { "name": "Forger", "limit": 6, "aliases": ["forger", "forge"], "wincon": 1, "color": [221, 0, 0] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Coven",
+      "limit": 4,
+      "aliases": ["random coven", "randomcoven", "rcov", "rc"],
+      "alignments": [
+        {
+          "name": "Coven Evil",
+          "limit": -1,
+          "aliases": ["coven evil", "covenevil", "covevil", "cove", "cevil", "ce"],
+          "roles": [
+            { "name": "Medusa", "limit": 1, "aliases": ["medusa", "medu", "dusa"], "wincon": 2, "color": [191, 95, 255] },
+            { "name": "Coven Leader", "limit": 1, "aliases": ["coven leader", "covenleader", "cl"], "wincon": 2, "color": [191, 95, 255] },
+            { "name": "Hex Master", "limit": 1, "aliases": ["hex master", "hexmaster", "hex", "hm"], "wincon": 2, "color": [191, 95, 255] },
+            { "name": "Potion Master", "limit": 1, "aliases": ["potion master", "potionmaster", "potion", "pmer", "pm"], "wincon": 2, "color": [181, 69, 255] },
+            { "name": "Poisoner", "limit": 1, "aliases": ["poisoner", "pois"], "wincon": 2, "color": [191, 95, 255] },
+            { "name": "Necromancer", "limit": 1, "aliases": ["necromancer", "necro"], "wincon": 2, "color": [191, 95, 255] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Neutrals",
+      "limit": -1,
+      "aliases": ["random neutral", "randomneutral", "rn"],
+      "alignments": [
+        {
+          "name": "Neutral Evil",
+          "limit": -1,
+          "aliases": ["neutral evil", "neutralevil", "ne"],
+          "roles": [
+            { "name": "Jester", "limit": 6, "aliases": ["jester", "jest"], "wincon": -1, "color": [245, 166, 212] },
+            {
+              "name": "Executioner",
+              "limit": 6,
+              "aliases": ["executioner", "exe"],
+              "wincon": -1,
+              "color": [203, 203, 203],
+              "targets": [
+                { "name": "Target", "exclude": ["Mafia", "Neutrals", "Jailor", "Mayor"] }
+              ]
+            }          
+          ]
+        },
+        {
+          "name": "Neutral Killing",
+          "limit": -1,
+          "aliases": ["neutral killing", "neutralkilling", "nk"],
+          "roles": [
+            { "name": "Serial Killer", "limit": 6, "aliases": ["serial killer", "serialkiller", "sk"], "wincon": 3, "color": [53, 109, 247] },
+            { "name": "Arsonist", "limit": 6, "aliases": ["arsonist", "arson", "arso"], "wincon": 4, "color": [235, 118, 1] },
+            { "name": "Werewolf", "limit": 1, "aliases": ["werewolf", "ww"], "wincon": 5, "color": [157, 112, 56] },
+            { "name": "Juggernaut", "limit": 1, "aliases": ["juggernaut", "jugg"], "wincon": 6, "color": [161, 43, 86] }
+          ]
+        },
+        {
+          "name": "Neutral Benign",
+          "limit": -1,
+          "aliases": ["neutral benign", "neutralbenign", "nb"],
+          "roles": [
+            { "name": "Survivor", "limit": 6, "aliases": ["survivor", "survive", "surv"], "wincon": -1, "color": [210, 210, 1] },
+            { "name": "Amnesiac", "limit": 6, "aliases": ["amnesiac", "amne"], "wincon": -1, "color": [38, 252, 251] },
+            {
+              "name": "Guardian Angel",
+              "limit": 6,
+              "aliases": ["guardian angel", "guardianangel", "guardian", "angel", "ga"],
+              "wincon": -1,
+              "color": [255, 255, 255],
+              "targets": [
+                {
+                  "name": "Liege",
+                  "exclude": ["Neutral Evil", "Guardian Angel"]
+                }
+              ]
+            }          
+          ]
+        },
+        {
+          "name": "Neutral Chaos",
+          "limit": -1,
+          "aliases": ["neutral chaos", "neutralchaos", "nc"],
+          "roles": [
+            { "name": "Vampire", "limit": 4, "aliases": ["vampire", "vamp"], "wincon": 7, "color": [123, 137, 104] },
+            { "name": "Pirate", "limit": 1, "aliases": ["pirate"], "wincon": -1, "color": [236, 194, 62] },
+            { "name": "Plaguebearer", "limit": 1, "aliases": ["plaguebearer", "plague", "bearer", "pb"], "wincon": 8, "color": [207, 255, 99] }
+          ]
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "Any",
+      "aliases": ["any", "*"],
+      "factions": ["Town", "Mafia", "Coven", "Neutrals"],
+      "alignments": [],
+      "roles": []
+    }
+  ]
+}
