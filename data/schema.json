@@ -91,6 +91,10 @@
                         "description": "ID of win condition for role",
                         "type": "integer"
                       },
+                      "oppose": {
+                        "description": "ID of win condition that is required to exist in the rolelist for this role to be rollable",
+                        "type": "integer"
+                      },
                       "color": {
                         "description": "RGB value of role color",
                         "type": "array",

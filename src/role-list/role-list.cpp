@@ -6,6 +6,8 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
   this->data = data;
   this->rq_factions = rq_factions;
 
+  std::vector<Role *> roles;
+
   std::map<int, bool> wincons;
 
   for (auto entry : input)
@@ -24,12 +26,16 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
         {
           Role *role = static_cast<Role *>(data[i]);
           wincons[role->wincon] = true;
+          roles.push_back(role);
           break;
         }
         case ListEntry::Type::ALIGNMENT:
         {
           Alignment *alignment = static_cast<Alignment *>(data[i]);
-          for (auto role : alignment->roles) wincons[role->wincon] = true;
+          for (auto role : alignment->roles) {
+            wincons[role->wincon] = true;
+            roles.push_back(role);
+          }
           break;
         }
         case ListEntry::Type::FACTION:
@@ -37,7 +43,10 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
           Faction *faction = static_cast<Faction *>(data[i]);
           for (auto alignment : faction->alignments)
           {
-            for (auto role : alignment->roles) wincons[role->wincon] = true;
+            for (auto role : alignment->roles) {
+              wincons[role->wincon] = true;
+              roles.push_back(role);
+            }
           }
           break;
         }
@@ -53,6 +62,10 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
     }
   }
   if (wincons.size() < 2) throw Error("Invalid rolelist");
+  for (auto entry : roles)
+  {
+    if (entry->oppose != -1 && !wincons.contains(entry->oppose)) throw Error("Invalid rolelist");
+  }
 
   std::srand(std::time(nullptr));
 }
@@ -169,7 +182,17 @@ void RoleList::generate()
   if (wincons.size() < 2)
   {
     output.clear();
+    counts.clear();
     generate();
+  }
+  for (auto role : output)
+  {
+    if (role.second->oppose != -1 && !wincons.contains(role.second->oppose))
+    {
+      output.clear();
+      counts.clear();
+      generate();
+    }
   }
 }
 

@@ -51,7 +51,7 @@ make
 
 Sample data files are located in [`data`](data).
 
-2. Enter the role slots you would like to add to the list. Leave a line blank to continue to the next step. Alternatively, you can specify the role list from a flag using the `-f` option.
+2. Enter the role slots you would like to add to the list. Leave a line blank to continue to the next step. Alternatively, you can specify the role list from a file using the `-f` option.
 3. For every player, enter the scrolls they are using as a comma separated list. Prefix the roll with a `-` to enter as a cursed scroll. For example, to add a `Jailor` blessed scroll and a `Coroner` cursed scroll to a player (This stage is skipped when using the `-r` option):
 
 ```

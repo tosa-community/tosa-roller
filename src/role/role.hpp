@@ -20,12 +20,12 @@ public:
   std::vector<TargetData> target_data;
 
   int wincon;
+  int oppose;
 
   int alignment_pos;
   int faction_pos;
 
-  Role(int pos, std::string name, int limit, std::vector<std::string> aliases, int wincon, std::vector<int> color);
-  Role(int pos, std::string name, int limit, std::vector<std::string> aliases, int wincon, std::vector<int> color, std::vector<TargetData> target_data);
+  Role(int pos, std::string name, int limit, std::vector<std::string> aliases, int wincon, int oppose, std::vector<int> color, std::vector<TargetData> target_data=std::vector<TargetData>());
   ~Role();
 
   std::string get_colored_str(bool color=true);
