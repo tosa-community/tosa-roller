@@ -73,6 +73,7 @@
             { "name": "Trapper", "limit": 6, "aliases": ["trapper"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Priest", "limit": 6, "aliases": ["priest"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Castle", "limit": 6, "aliases": ["castle"], "wincon": 0, "color": [6, 224, 12] },
+            { "name": "Bouncer", "limit": 6, "aliases": ["bouncer", "bounce"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Stargazer", "limit": 6, "aliases": ["stargazer", "star", "gazer", "sg"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Inventor", "limit": 6, "aliases": ["inventor", "invent"], "wincon": 0, "color": [6, 224, 12] }
           ]

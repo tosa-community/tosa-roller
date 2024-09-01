@@ -87,7 +87,8 @@
             { "name": "Framer", "limit": 6, "aliases": ["framer", "frame"], "wincon": 1, "color": [221, 0, 0] },
             { "name": "Disguiser", "limit": 6, "aliases": ["disguiser", "disguise", "disg"], "wincon": 1, "color": [221, 0, 0] },
             { "name": "Janitor", "limit": 6, "aliases": ["janitor", "jani"], "wincon": 1, "color": [221, 0, 0] },
-            { "name": "Forger", "limit": 6, "aliases": ["forger", "forge"], "wincon": 1, "color": [221, 0, 0] }
+            { "name": "Forger", "limit": 6, "aliases": ["forger", "forge"], "wincon": 1, "color": [221, 0, 0] },
+            { "name": "Hypnotist", "limit": 6, "aliases": ["hypnotist", "hypno"], "wincon": 1, "color": [221, 0, 0] }
           ]
         }
       ]
@@ -108,6 +109,7 @@
               "limit": 6,
               "aliases": ["executioner", "exe"],
               "wincon": -1,
+              "oppose": 0,
               "color": [203, 203, 203],
               "targets": [
                 { "name": "Target", "exclude": ["Mafia", "Neutrals", "Jailor", "Mayor"] }

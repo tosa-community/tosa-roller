@@ -29,7 +29,7 @@
             { "name": "Deputy", "limit": 1, "aliases": ["deputy", "dep"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Trickster", "limit": 6, "aliases": ["trickster", "trick"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Officer", "limit": 6, "aliases": ["officer", "offi", "off"], "wincon": 0, "color": [6, 224, 12] },
-            { "name": "Demolitionist", "limit": 1, "aliases": ["demolitionist", "demo"], "wincon": 0, "color": [6, 224, 12] }
+            { "name": "Demolitionist", "limit": 6, "aliases": ["demolitionist", "demo"], "wincon": 0, "color": [6, 224, 12] }
           ]
         },
         {
@@ -74,6 +74,7 @@
             { "name": "Trapper", "limit": 6, "aliases": ["trapper"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Priest", "limit": 6, "aliases": ["priest"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Castle", "limit": 6, "aliases": ["castle"], "wincon": 0, "color": [6, 224, 12] },
+            { "name": "Bouncer", "limit": 6, "aliases": ["bouncer", "bounce"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Stargazer", "limit": 6, "aliases": ["stargazer", "star", "gazer", "sg"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Inventor", "limit": 6, "aliases": ["inventor", "invent"], "wincon": 0, "color": [6, 224, 12] }
           ]
