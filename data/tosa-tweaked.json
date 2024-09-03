@@ -441,14 +441,14 @@
     },
     {
       "name": "Common Coven",
-      "aliases": ["common coven", "commoncoven", "cc"],
+      "aliases": ["common coven", "commoncoven", "ccov", "cc"],
       "factions": [],
       "alignments": ["Coven Utility", "Coven Deception"],
       "roles": []
     },
     {
       "name": "Common Corporate",
-      "aliases": ["common corporate", "commoncorporate", "ccorp"],
+      "aliases": ["common corporate", "commoncorporate", "ccorp", "ccor", "cco"],
       "factions": [],
       "alignments": ["Corporate Utility", "Corporate Influence"],
       "roles": []
@@ -465,6 +465,13 @@
       "aliases": ["common elementals", "commonelementals", "ce"],
       "factions": [],
       "alignments": ["Elementals Utility", "Elementals Disruption"],
+      "roles": []
+    },
+    {
+      "name": "Common Neutral",
+      "aliases": ["common neutral", "commonneutral", "cn"],
+      "factions": [],
+      "alignments": ["Neutral Evil", "Neutral Vindictive"],
       "roles": []
     }
   ]
