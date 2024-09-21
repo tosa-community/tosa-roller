@@ -16,6 +16,7 @@
             { "name": "Monarch", "limit": 1, "aliases": ["monarch", "mon"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Prosecutor", "limit": 1, "aliases": ["prosecutor", "pros"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Marshal", "limit": 1, "aliases": ["marshal", "marshall", "marsh"], "wincon": 0, "color": [6, 224, 12] },
+            { "name": "Transporter", "limit": 1, "aliases": ["transporter", "trans"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Magus", "limit": 1, "aliases": ["magus", "mag"], "wincon": 0, "color": [6, 224, 12] }
           ]
         },
@@ -26,7 +27,7 @@
           "roles": [
             { "name": "Vigilante", "limit": 6, "aliases": ["vigilante", "vigi", "vig"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Veteran", "limit": 6, "aliases": ["veteran", "vet"], "wincon": 0, "color": [6, 224, 12] },
-            { "name": "Deputy", "limit": 1, "aliases": ["deputy", "dep"], "wincon": 0, "color": [6, 224, 12] },
+            { "name": "Deputy", "limit": 6, "aliases": ["deputy", "dep"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Trickster", "limit": 6, "aliases": ["trickster", "trick"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Officer", "limit": 6, "aliases": ["officer", "offi", "off"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Demolitionist", "limit": 6, "aliases": ["demolitionist", "demo"], "wincon": 0, "color": [6, 224, 12] }
@@ -42,7 +43,6 @@
             { "name": "Amnesiac", "limit": 6, "aliases": ["amnesiac", "amne"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Admirer", "limit": 6, "aliases": ["admirer", "admi", "adm"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Socialite", "limit": 6, "aliases": ["socialite", "socialist", "soci", "soc"], "wincon": 0, "color": [6, 224, 12] },
-            { "name": "Transporter", "limit": 6, "aliases": ["transporter", "trans"], "wincon": 0, "color": [6, 224, 12] },
             { "name": "Chad", "limit": 6, "aliases": ["chad"], "wincon": 0, "color": [6, 224, 12] }
           ]
         },
@@ -296,7 +296,7 @@
       "alignments": [
         {
           "name": "Neutral Apocalypse",
-          "limit": 4,
+          "limit": 1,
           "aliases": ["neutral apocalypse", "neutralapocalypse", "na", "horsemen", "horseman"],
           "roles": [
             { "name": "Plaguebearer", "limit": 1, "aliases": ["plaguebearer", "plague", "bearer", "pb"], "wincon": 5, "color": [255, 0, 78] },
