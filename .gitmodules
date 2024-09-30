@@ -1,0 +1,6 @@
+[submodule "lib/ext/json"]
+	path = lib/ext/json
+	url = https://github.com/nlohmann/json.git
+[submodule "lib/ext/CLI11"]
+	path = lib/ext/CLI11
+	url = https://github.com/CLIUtils/CLI11
