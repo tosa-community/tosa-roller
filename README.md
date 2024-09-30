@@ -18,6 +18,12 @@ A rolelist generator for Town of Salem: Anticipation
 - [CLIUtils/CLI11](https://github.com/CLIUtils/CLI11)
 - [nlohmann/json](https://github.com/nlohmann/json)
 
+To obtain the source with the dependencies included, run:
+
+```bash
+git clone --recurse-submodules https://github.com/salademalade/tosa-roller.git
+```
+
 ## Compilation
 
 ### using CMake
@@ -28,6 +34,8 @@ cmake --build .
 ```
 
 ### using Autotools
+
+(This has not been tested with the dependencies as submodules, so you will need to obtain them from elsewhere. This uses `pkg-config` to find the dependencies.)
 
 ```bash
 # If build files don't already exist
