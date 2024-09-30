@@ -14,8 +14,16 @@
 #include "faction/faction.hpp"
 #include "role-list/role-list.hpp"
 
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
 int main(int argc, char **argv)
 {
+  #ifdef _WIN32
+  SetConsoleOutputCP(CP_UTF8);
+  std::setvbuf(stdout, nullptr, _IOFBF, 1000);
+  #endif
   try
   {
     CLI::App app("A role-list generator for Town of Salem: Anticipation");
@@ -167,12 +175,7 @@ int main(int argc, char **argv)
           {
             bool is_banned = false;
             std::string name;
-#ifdef _WIN32
-            if (role.contains("ascii_name")) name = role["ascii_name"];
-            else name = role["name"];
-#else
             name = role["name"];
-#endif
 
             for (int i = 0; i < role["aliases"].size(); i++)
             {
@@ -195,12 +198,7 @@ int main(int argc, char **argv)
               for (auto target : role["targets"])
               {
                 Role::TargetData target_info;
-#ifdef _WIN32
-                if (target.contains("ascii_name")) target_info.name = target["ascii_name"];
-                else target_info.name = target["name"];
-#else
                 target_info.name = target["name"];
-#endif
                 for (auto entry : target["exclude"])
                 {
                   target_info.exclude.push_back(entry);
