@@ -4,3 +4,6 @@
 [submodule "lib/ext/CLI11"]
 	path = lib/ext/CLI11
 	url = https://github.com/CLIUtils/CLI11
+[submodule "data"]
+	path = data
+	url = https://github.com/tosa-community/roles-data
