@@ -1,6 +1,7 @@
 #ifndef FACTION_HPP
 #define FACTION_HPP
 
+#include <algorithm>
 #include <vector>
 #include <string>
 #include "list-entry/list-entry.hpp"
