@@ -10,6 +10,10 @@ RoleList::RoleList(std::string filename, std::vector<std::string> input, std::ve
 
   std::map<int, bool> wincons;
 
+  if (input.size() < 5) {
+    throw Error("Rolelist too short.");
+  }
+
   for (auto entry : input)
   {
     std::string q = process_role_entry(entry);
