@@ -1,4 +1,7 @@
 #include "error.hpp"
+#include <cstdarg>
+#include <cstdio>
+#include <cstdlib>
 
 Error::Error(const char *format, ...)
 {
@@ -31,7 +34,6 @@ Error::Error(std::string filename, int line, const char *format, ...)
   this->msg = buf;
 }
 
-Error::~Error()
-{}
+Error::~Error() { }
 
 const char *Error::what() { return this->msg.c_str(); }

@@ -1,0 +1,11 @@
+---
+BasedOnStyle: Webkit
+IndentWidth: 2
+---
+Language: Cpp
+AlignArrayOfStructures: Right
+ColumnLimit: 80
+ConstructorInitializerIndentWidth: 2
+ContinuationIndentWidth: 2
+DerivePointerAlignment: false
+PointerAlignment: Right

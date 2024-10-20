@@ -1,6 +1,10 @@
 #include "role.hpp"
+#include <sstream>
 
-Role::Role(int pos, std::string name, int limit, std::vector<std::string> aliases, int wincon, int oppose, std::vector<int> color, std::vector<TargetData> target_data) : ListEntry(pos, name, limit, aliases)
+Role::Role(int pos, std::string name, int limit,
+  std::vector<std::string> aliases, int wincon, int oppose,
+  std::vector<int> color, std::vector<TargetData> target_data)
+  : ListEntry(pos, name, limit, aliases)
 {
   this->wincon = wincon;
   this->oppose = oppose;
@@ -11,15 +15,16 @@ Role::Role(int pos, std::string name, int limit, std::vector<std::string> aliase
   this->target_data = target_data;
 }
 
-Role::~Role()
-{}
+Role::~Role() { }
 
 std::string Role::get_colored_str(bool color)
 {
-  if (!color) return name;
+  if (!color)
+    return name;
 
   std::stringstream stream;
-  stream << "\033[1;38;2;" << this->r << ";" << this->g << ";" << this->b << "m" << name << "\033[0;m";
+  stream << "\033[1;38;2;" << this->r << ";" << this->g << ";" << this->b << "m"
+         << name << "\033[0;m";
 
   return stream.str();
 }

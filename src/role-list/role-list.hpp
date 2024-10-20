@@ -1,23 +1,11 @@
 #ifndef ROLE_LIST_HPP
 #define ROLE_LIST_HPP
 
-#include <functional>
-#include <algorithm>
-#include <utility>
-#include <iostream>
-#include <vector>
-#include <string>
-#include <map>
-#include <random>
-#include <cstdlib>
-#include <cctype>
-#include <ctime>
-#include "error/error.hpp"
+#include "faction/faction.hpp"
 #include "list-entry/list-entry.hpp"
 #include "role/role.hpp"
-#include "alignment/alignment.hpp"
-#include "faction/faction.hpp"
-#include "group/group.hpp"
+#include <string>
+#include <vector>
 
 class RoleList
 {
@@ -39,20 +27,22 @@ class RoleList
   Role *generate_role_from_group(int i);
 
   void _shuffle(std::vector<std::string> scrolls);
+
 public:
-  RoleList(std::string filename, std::vector<std::string> input, std::vector<ListEntry *> data, std::vector<Faction *> rq_factions);
-  ~RoleList();
+    RoleList(std::string filename, std::vector<std::string> input,
+      std::vector<ListEntry *> data, std::vector<Faction *> rq_factions);
+    ~RoleList();
 
-  void generate();
+    void generate();
 
-  void shuffle();
-  void shuffle(std::vector<std::string> scrolls);
+    void shuffle();
+    void shuffle(std::vector<std::string> scrolls);
 
-  void generate_targets();
+    void generate_targets();
 
-  std::string to_string(bool verbose=false, bool color=true);
+    std::string to_string(bool verbose = false, bool color = true);
 
-  static std::string process_role_entry(std::string input);
+    static std::string process_role_entry(std::string input);
 };
 
 #endif

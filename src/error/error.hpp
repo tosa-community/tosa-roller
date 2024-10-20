@@ -1,16 +1,12 @@
 #ifndef ERROR_HPP
 #define ERROR_HPP
 
-#include <exception>
-#include <cstdarg>
-#include <cstdlib>
-#include <cstring>
-#include <cstdio>
 #include <string>
 
 class Error
 {
   std::string msg;
+
 public:
   std::string filename;
   int line = 0;
